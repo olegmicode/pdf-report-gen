@@ -147,6 +147,28 @@ position_dict = {
                 "dy": 1
             },
         },
+        "page_two_column": {
+            "OrderNo": {
+                "x": 105,
+                "dy": 0
+            },
+            "Pkgs": {
+                "x": 225,
+                "dy": 0
+            },
+            "Weight": {
+                "x": 285,
+                "dy": 0
+            },
+            "AddInfo": {
+                "x": 425,
+                "dy": 0
+            },
+            "PalletSlip": {
+                "x": 396,
+                "dy": 1
+            },
+        },
         "rows": [
             418,
             400,
@@ -156,6 +178,77 @@ position_dict = {
             409,
             391,
             373,
+            355,
+            337,
+            319,
+            301,
+            283,
+            265,
+            247,
+            229,
+            211,
+            193,
+            175,
+            157,
+            139,
+            121,
+            103,
+            85,
+            67,
+            49,
+            31,
+            13,
+
+
+        ]
+    },
+    "CarrierInfo": {
+        "page_one_column": {
+            "HUQty": {
+                "x": 52,
+                "dy": 0
+            },
+            "HUType": {
+                "x": 80,
+                "dy": 0
+            },
+            "PkgQty": {
+                "x": 108,
+                "dy": 0
+            },
+            "PkgType": {
+                "x": 136,
+                "dy": 0
+            },
+            "Weight": {
+                "x": 396,
+                "dy": 1
+            },
+            "HM": {
+                "x": 396,
+                "dy": 1
+            },
+            "Desc": {
+                "x": 396,
+                "dy": 1
+            },
+            "NMFC": {
+                "x": 396,
+                "dy": 1
+            },
+            "Class": {
+                "x": 396,
+                "dy": 1
+            },
+        },
+        "rows": [
+            282,
+            264,
+            246,
+            228,
+            210,
+            192,
+            174,
             355,
             337,
             319,
@@ -193,29 +286,51 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     data = json.loads(json_data)
 
     packet = io.BytesIO()
-    can = canvas.Canvas(packet, pagesize=letter)
+    pdf_canvas = canvas.Canvas(packet, pagesize=letter)
+    # page 1
     for pk in data:
         if pk in pkey_types1:
             for key in data[pk]:
                 x = position_dict[pk][key]["x"]
                 y = position_dict[pk][key]["y"]
-                can.setFont("Helvetica", 8)
-                can.drawString(x, y, data[pk][key])
+                pdf_canvas.setFont("Helvetica", 8)
+                pdf_canvas.drawString(x, y, data[pk][key])
         elif pk == "OrderInfo":
             idx = 0
             for row_data in data[pk]['Items']:
                 for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
+                    val = row_data[key]
                     if idx < 4:
-                        val = row_data[key]
                         x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
                         dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
                         y = position_dict["OrderInfo"]["rows"][idx]
                         print(x, y, dy)
-                        can.drawString(x, y + dy, val)
-
+                        pdf_canvas.drawString(x, y + dy, val)
+                    # elif idx < 19:
+                    #     x = position_dict["OrderInfo"]["page_two_column"][key]["x"]
+                    #     dy = position_dict["OrderInfo"]["page_two_column"][key]["dy"]
+                    #     y = position_dict["OrderInfo"]["rows"][idx]
+                    #     print(x, y, dy)
+                    #     can.drawString(x, y + dy, val)
+                idx += 1
+        elif pk == "CarrierInfo":
+            idx = 0
+            for row_data in data[pk]['Items']:
+                for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
+                    val = row_data[key]
+                    if idx < 5:
+                        x = position_dict[pk]["page_one_column"][key]["x"]
+                        dy = position_dict[pk]["page_one_column"][key]["dy"]
+                        y = position_dict[pk]["rows"][idx]
+                        print(x, y, dy)
+                        pdf_canvas.drawString(x, y + dy, val)
                 idx += 1
 
-    can.save()
+    pdf_canvas.showPage()
+    # page2
+
+    pdf_canvas.showPage()
+    pdf_canvas.save()
 
     packet.seek(0)
 
