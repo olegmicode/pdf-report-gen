@@ -193,7 +193,8 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     for pk in data:
         if pk == "ShipFrom" or pk == "ShipTo" or pk == "ThirdParty" or pk == "BOL":
             for key in data[pk]:
-                x = position_dict[pk][key]
+                x = position_dict[pk][key]["x"]
+                y = position_dict[pk][key]["y"]
                 can.drawString(x, y, data[pk][key])
 
         if pk == "CarrierDetails":
