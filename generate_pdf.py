@@ -81,50 +81,51 @@ position_dict = {
         }
     },
     "CarrierDetails": {
+
         "CarrierName": {
             "x": 450,
             "y": 617
         },
         "TrailerNo": {
             "x": 450,
-            "y": 617
+            "y": 605
         },
         "SealNo": {
             "x": 450,
-            "y": 617
+            "y": 593
         },
         "SCAC": {
             "x": 450,
-            "y": 617
+            "y": 575
         },
         "PRO": {
             "x": 450,
-            "y": 617
+            "y": 565
         },
         "PROBarCode": {
             "x": 450,
-            "y": 617
+            "y": 545
         },
         "Prepaid": {
-            "x": 450,
-            "y": 617
+            "x": 388,
+            "y": 487
         },
         "Collect": {
-            "x": 450,
-            "y": 617
+            "x": 460,
+            "y": 487
         },
         "3rdParty": {
             "x": 450,
             "y": 617
         },
         "MasterBOL": {
-            "x": 450,
-            "y": 617
+            "x": 378,
+            "y": 471
         },
 
     },
     "OrderInfo": {
-        "column1": {
+        "page_one_column": {
             "OrderNo": {
                 "x": 105,
                 "dy": 0
@@ -147,9 +148,10 @@ position_dict = {
             },
         },
         "rows": [
-            481,
-            463,
-            445,
+            418,
+            400,
+            382,
+            364,
             427,
             409,
             391,
@@ -175,9 +177,11 @@ position_dict = {
             31,
             13,
 
+
         ]
     },
 }
+pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty", "BOL", "CarrierDetails"]
 
 
 def generate_pdf_from_json(json_file_path, output_pdf_path):
@@ -191,50 +195,25 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     packet = io.BytesIO()
     can = canvas.Canvas(packet, pagesize=letter)
     for pk in data:
-        if pk == "ShipFrom" or pk == "ShipTo" or pk == "ThirdParty" or pk == "BOL":
+        if pk in pkey_types1:
             for key in data[pk]:
                 x = position_dict[pk][key]["x"]
                 y = position_dict[pk][key]["y"]
                 can.setFont("Helvetica", 8)
                 can.drawString(x, y, data[pk][key])
+        elif pk == "OrderInfo":
+            idx = 0
+            for row_data in data[pk]['Items']:
+                for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
+                    if idx < 4:
+                        val = row_data[key]
+                        x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
+                        dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
+                        y = position_dict["OrderInfo"]["rows"][idx]
+                        print(x, y, dy)
+                        can.drawString(x, y + dy, val)
 
-        if pk == "CarrierDetails":
-            x = 450
-            y = 617
-            for key in data[pk]:
-                if (key == "SCAC"):
-                    can.drawString(x, 575, data[pk][key])
-                elif (key == "PRO"):
-                    can.drawString(x, 565, data[pk][key])
-                elif (key == "PROBarCode"):
-                    can.drawString(x, 545, data[pk][key])
-                elif (key == "Prepaid"):
-                    can.drawString(388, 487, data[pk][key])
-                elif (key == "Collect"):
-                    can.drawString(460, 487, data[pk][key])
-                elif (key == "3rdParty"):
-                    can.drawString(538, 487, data[pk][key])
-                elif (key == "MasterBOL"):
-                    can.drawString(378, 471, data[pk][key])
-                else:
-                    can.drawString(x, y, data[pk][key])
-                    y -= 12
-        if pk == "OrderInfo":
-            x = 105
-            y = 418
-            cnt = 0
-            for key in data[pk]:
-                for idx in data[pk][key]:
-                    cnt += 1
-                    can.drawString(x, y, idx["OrderNo"])
-                    can.drawString(x + 120, y,  idx["Pkgs"])
-                    can.drawString(x + 182, y,  idx["Weight"])
-                    can.drawString(x + 320, y,  idx["AddInfo"])
-                    can.drawString(x + 281, y+1,  idx["PalletSlip"])
-                    y -= 18
-                    print(cnt)
-                    if cnt > 4:
-                        break
+                idx += 1
 
     can.save()
 
