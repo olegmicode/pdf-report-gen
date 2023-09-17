@@ -1,0 +1,6 @@
+1. Task1 
+    Fill the current data in page 1 and page 2
+2. Task2
+    Circle one instad of letter in Customer Order INformation SEction
+3. Task3
+    Use the center of the every position instead of left topsection.
