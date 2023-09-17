@@ -59,15 +59,15 @@ position_dict = {
         },
         "Address": {
             "x": 150,
-            "y": 533
+            "y": 519
         },
         "City/State/Zip": {
             "x": 150,
-            "y": 533
+            "y": 505
         },
         "SpecialInstructions": {
             "x": 150,
-            "y": 533
+            "y": 487
         },
     },
     "BOL": {
@@ -195,6 +195,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
             for key in data[pk]:
                 x = position_dict[pk][key]["x"]
                 y = position_dict[pk][key]["y"]
+                can.setFont("Helvetica", 8)
                 can.drawString(x, y, data[pk][key])
 
         if pk == "CarrierDetails":
