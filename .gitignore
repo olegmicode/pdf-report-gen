@@ -1,2 +1,5 @@
+.vscode/
+venv/
+.venv
 *.pdf
 !vics-stand.pdf
