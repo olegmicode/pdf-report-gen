@@ -1,0 +1,303 @@
+{
+   "ShipFrom": {
+      "Name": "XYZ, LLC",
+      "Address": "6000 Airport Plaza Dr. STE 550",
+      "City/State/Zip": "Long Beach, CA 90810",
+      "SID#": "123456789",
+      "FOB": ""
+   },
+   "ShipTo": {
+      "Name": "ABC Company",
+      "Address": "123 Main St.",
+      "City/State/Zip": "Lynn, MA 01904",
+      "SID#": "123456789",
+      "FOB": ""
+   },
+  "ThirdParty": {
+      "Name": "ABC Company",
+      "Address": "123 Main St.",
+      "City/State/Zip": "Lynn, MA 01904",
+      "SpecialInstructions": "test test test"
+  },
+   "BOL": {
+      "BOLNumber": "99278793",
+      "BarCode": "99278793"
+   },
+   "CarrierDetails": {
+       "CarrierName": "FedEx",
+       "TrailerNo": "29384754",
+       "SealNo": "5555",
+       "SCAC": "FDXG",
+       "PRO": "0980980988",
+       "PROBarCode": "0980980988",
+       "Prepaid": "X",
+       "Collect": "1",
+       "3rdParty": "2",
+       "MasterBOL": "X"
+   },
+   "OrderInfo": {
+      "Items": [
+         {
+            "OrderNo": "1000",
+            "Pkgs": "2",
+            "Weight": "5.6",
+            "AddInfo": "some text",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1001",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1002",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1003",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1004",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1005",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1006",
+            "Pkgs": "1",
+            "Weight": "8.1",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1007",
+            "Pkgs": "1",
+            "Weight": "11.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1008",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1009",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1010",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1011",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1012",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1013",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1014",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1015",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1016",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1017",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1018",
+            "Pkgs": "1",
+            "Weight": "5.0",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         }
+      ]
+   },
+   "CarrierInfo": {
+      "Items": [
+         {
+            "HUQty": "1",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "364 LBS",
+            "HM": "",
+            "Desc": "Sport Accessories",
+            "NMFC": "13431433",
+            "Class": "70"
+         },
+         {
+            "HUQty": "2",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "3",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "4",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "5",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "6",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "7",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "8",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "9",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "10",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         }
+      ]
+   },
+   "Footer": {
+       "DeclaredValue": "900.50",
+       "DeclaredValuePer": "xxx",
+       "CODAmount": "500.12",
+       "Collect": "",
+       "Prepaid": "X",
+       "CustCheck": "",
+       "TLByShipper": "",
+       "TLByDriver": "",
+       "FCByShipper": "",
+       "FCByDriverContains": "",
+       "FCByDriverPieces": ""
+
+   }
+}
