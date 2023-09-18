@@ -10,116 +10,115 @@ registerFontFamily('Vera', normal='Vera', bold='',
 # Array
 position_dict = {
     "ShipFrom": {
-
         "Name": {
-            "x": 150,
+            "x": 190,
             "y": 678
         },
         "Address": {
-            "x": 150,
+            "x": 190,
             "y": 664
         },
         "City/State/Zip": {
-            "x": 150,
+            "x": 190,
             "y": 650
         },
         "SID#": {
-            "x": 150,
+            "x": 190,
             "y": 636
         },
         "FOB": {
-            "x": 150,
+            "x": 190,
             "y": 622
         }
     },
     "ShipTo": {
 
         "Name": {
-            "x": 150,
+            "x": 190,
             "y": 606
         }, "Address": {
-            "x": 150,
+            "x": 190,
             "y": 592
         }, "City/State/Zip": {
-            "x": 150,
+            "x": 190,
             "y": 578
         }, "SID#": {
-            "x": 150,
+            "x": 190,
             "y": 564
         }, "FOB": {
-            "x": 150,
+            "x": 190,
             "y": 550
         }
     },
     "ThirdParty": {
 
         "Name": {
-            "x": 150,
+            "x": 190,
             "y": 533
         },
         "Address": {
-            "x": 150,
+            "x": 190,
             "y": 519
         },
         "City/State/Zip": {
-            "x": 150,
+            "x": 190,
             "y": 505
         },
         "SpecialInstructions": {
-            "x": 150,
+            "x": 190,
             "y": 487
         },
     },
     "BOL": {
         "BOLNumber": {
-            "x": 450,
+            "x": 490,
             "y": 682
         },
         "BarCode": {
-            "x": 450,
+            "x": 490,
             "y": 682
         }
     },
     "CarrierDetails": {
 
         "CarrierName": {
-            "x": 450,
+            "x": 485,
             "y": 617
         },
         "TrailerNo": {
-            "x": 450,
+            "x": 485,
             "y": 605
         },
         "SealNo": {
-            "x": 450,
+            "x": 485,
             "y": 593
         },
         "SCAC": {
-            "x": 450,
+            "x": 485,
             "y": 575
         },
         "PRO": {
-            "x": 450,
+            "x": 485,
             "y": 565
         },
         "PROBarCode": {
-            "x": 450,
+            "x": 485,
             "y": 545
         },
         "Prepaid": {
-            "x": 388,
+            "x": 392,
             "y": 487
         },
         "Collect": {
-            "x": 460,
+            "x": 462,
             "y": 487
         },
         "3rdParty": {
-            "x": 450,
-            "y": 617
+            "x": 536,
+            "y": 487
         },
         "MasterBOL": {
-            "x": 378,
+            "x": 381,
             "y": 471
         },
 
@@ -127,45 +126,29 @@ position_dict = {
     "OrderInfo": {
         "page_one_column": {
             "OrderNo": {
-                "x": 105,
+                "x": 115,
+                "dx": 0,
                 "dy": 0
             },
             "Pkgs": {
-                "x": 225,
+                "x": 229,
+                "dx": 2,
                 "dy": 0
             },
             "Weight": {
-                "x": 285,
+                "x": 300,
+                "dx": 0,
                 "dy": 0
             },
             "AddInfo": {
-                "x": 425,
+                "x": 490,
+                "dx": 0,
                 "dy": 0
             },
             "PalletSlip": {
-                "x": 396,
-                "dy": 1
-            },
-        },
-        "page_two_column": {
-            "OrderNo": {
-                "x": 105,
-                "dy": 0
-            },
-            "Pkgs": {
-                "x": 225,
-                "dy": 0
-            },
-            "Weight": {
-                "x": 285,
-                "dy": 0
-            },
-            "AddInfo": {
-                "x": 425,
-                "dy": 0
-            },
-            "PalletSlip": {
-                "x": 396,
+                "xY": 352.5,
+                "xN": 388.5,
+                "dx": 0.5, 
                 "dy": 1
             },
         },
@@ -174,30 +157,30 @@ position_dict = {
             400,
             382,
             364,
-            427,
-            409,
-            391,
-            373,
-            355,
-            337,
-            319,
-            301,
-            283,
-            265,
-            247,
-            229,
-            211,
-            193,
-            175,
-            157,
-            139,
-            121,
-            103,
-            85,
-            67,
-            49,
-            31,
-            13,
+            653,
+            635,
+            617,
+            599,
+            581,
+            563,
+            545,
+            527,
+            509,
+            491,
+            473,
+            455,
+            437,
+            419,
+            401,
+            383,
+            365,
+            347,
+            329,
+            311,
+            293,
+            275,
+            257,
+            239,
 
 
         ]
@@ -205,40 +188,78 @@ position_dict = {
     "CarrierInfo": {
         "page_one_column": {
             "HUQty": {
-                "x": 52,
+                "x": 55,
                 "dy": 0
             },
             "HUType": {
-                "x": 80,
+                "x": 90,
                 "dy": 0
             },
             "PkgQty": {
-                "x": 108,
+                "x": 127,
                 "dy": 0
             },
             "PkgType": {
-                "x": 136,
+                "x": 163,
                 "dy": 0
             },
             "Weight": {
-                "x": 396,
-                "dy": 1
+                "x": 210,
+                "dy": 0
             },
             "HM": {
-                "x": 396,
-                "dy": 1
+                "x": 254,
+                "dy": 0
             },
             "Desc": {
-                "x": 396,
-                "dy": 1
+                "x": 380,
+                "dy": 0
             },
             "NMFC": {
-                "x": 396,
-                "dy": 1
+                "x": 510,
+                "dy": 0
             },
             "Class": {
-                "x": 396,
-                "dy": 1
+                "x": 555,
+                "dy": 0
+            },
+        },
+        "page_two_column": {
+            "HUQty": {
+                "x": 55,
+                "dy": 4
+            },
+            "HUType": {
+                "x": 90,
+                "dy": 4
+            },
+            "PkgQty": {
+                "x": 127,
+                "dy": 4
+            },
+            "PkgType": {
+                "x": 163,
+                "dy": 4
+            },
+            "Weight": {
+                "x": 210,
+                "dy": 4
+            },
+            "HM": {
+                "x": 254,
+                "dy": 4
+            },
+            "Desc": {
+                "x": 380,
+                "dy": 4
+            },
+            "NMFC": {
+                "x": 510,
+                "dy": 4
+            },
+            "Class": {
+                "x": 555,
+                "dy": 4
             },
         },
         "rows": [
@@ -247,35 +268,72 @@ position_dict = {
             246,
             228,
             210,
+            318,
+            300,
+            282,
+            264,
+            246,
+            228,
+            210,
             192,
             174,
-            355,
-            337,
-            319,
-            301,
-            283,
-            265,
-            247,
-            229,
-            211,
-            193,
-            175,
-            157,
-            139,
-            121,
-            103,
-            85,
-            67,
-            49,
-            31,
-            13,
-
+            156,      
 
         ]
     },
+    "Footer": {
+       "DeclaredValue": {
+           "x": 72,
+           "y": 146
+       },
+       "DeclaredValuePer": {
+           "x": 150,
+           "y": 146
+       },
+       "CODAmount": {
+           "x": 485,
+           "y": 172
+       },
+       "Collect": {
+           "x": 464,
+           "y": 161
+       },
+       "Prepaid": {
+           "x": 531,
+           "y": 161
+       },
+       "CustCheck": {
+           "x": 514,
+           "y": 147
+       },
+       "TLByShipper": {
+           "x": 232,
+           "y": 72
+       },
+       "TLByDriver": {
+           "x": 232,
+           "y": 58
+       },
+       "FCByShipper": {
+           "x": 295,
+           "y": 71
+       },
+       "FCByDriverContains": {
+           "x": 295,
+           "y": 56
+       },
+       "FCByDriverPieces": {
+           "x": 295,
+           "y": 41
+       }
+    }
 }
-pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty", "BOL", "CarrierDetails"]
 
+def text_center_draw(canvas, x, y, text, font, size):
+     width = canvas.stringWidth(text=text, fontName=font, fontSize=size)
+     canvas.drawString(x-(width/2), y, text)
+
+pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty", "BOL", "CarrierDetails", "Footer"]
 
 def generate_pdf_from_json(json_file_path, output_pdf_path):
     with open(json_file_path) as file:
@@ -285,33 +343,52 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
 
     data = json.loads(json_data)
 
-    packet = io.BytesIO()
-    pdf_canvas = canvas.Canvas(packet, pagesize=letter)
+    packet_1 = io.BytesIO()
+    packet_2 = io.BytesIO()
+    first_pdf_canvas = canvas.Canvas(packet_1, pagesize=letter)
+    second_pdf_canvas = canvas.Canvas(packet_2, pagesize=letter)
     # page 1
     for pk in data:
         if pk in pkey_types1:
             for key in data[pk]:
                 x = position_dict[pk][key]["x"]
                 y = position_dict[pk][key]["y"]
-                pdf_canvas.setFont("Helvetica", 8)
-                pdf_canvas.drawString(x, y, data[pk][key])
+                first_pdf_canvas.setFont("Helvetica", 8)
+                second_pdf_canvas.setFont("Helvetica", 8)
+                text_center_draw(first_pdf_canvas, x, y, data[pk][key], "Helvetica", 8)
         elif pk == "OrderInfo":
             idx = 0
             for row_data in data[pk]['Items']:
                 for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
                     val = row_data[key]
                     if idx < 4:
-                        x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
+                        
                         dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
                         y = position_dict["OrderInfo"]["rows"][idx]
-                        print(x, y, dy)
-                        pdf_canvas.drawString(x, y + dy, val)
-                    # elif idx < 19:
-                    #     x = position_dict["OrderInfo"]["page_two_column"][key]["x"]
-                    #     dy = position_dict["OrderInfo"]["page_two_column"][key]["dy"]
-                    #     y = position_dict["OrderInfo"]["rows"][idx]
-                    #     print(x, y, dy)
-                    #     can.drawString(x, y + dy, val)
+                        # print(x, y, dy)
+                        if val == "N":
+                            x = position_dict["OrderInfo"]["page_one_column"][key]["xN"]
+                            val = "O"
+                        elif val == "Y":
+                            x = position_dict["OrderInfo"]["page_one_column"][key]["xY"]
+                            val = "O"
+                        else:
+                            x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
+                        text_center_draw(first_pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                    elif idx < 19:
+                        dx = position_dict["OrderInfo"]["page_one_column"][key]["dx"]
+                        dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
+                        y = position_dict["OrderInfo"]["rows"][idx]
+                        if val == "N":
+                            x = position_dict["OrderInfo"]["page_one_column"][key]["xN"]
+                            val = "O"
+                        elif val == "Y":
+                            x = position_dict["OrderInfo"]["page_one_column"][key]["xY"]
+                            val = "O"
+                        else:
+                            x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
+                        text_center_draw(second_pdf_canvas, x - dx, y + dy, val, "Helvetica", 8)
+                        
                 idx += 1
         elif pk == "CarrierInfo":
             idx = 0
@@ -322,26 +399,39 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                         x = position_dict[pk]["page_one_column"][key]["x"]
                         dy = position_dict[pk]["page_one_column"][key]["dy"]
                         y = position_dict[pk]["rows"][idx]
-                        print(x, y, dy)
-                        pdf_canvas.drawString(x, y + dy, val)
+                        text_center_draw(first_pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                    elif idx < 11:
+                        x = position_dict[pk]["page_one_column"][key]["x"]
+                        dy = position_dict[pk]["page_two_column"][key]["dy"]
+                        y = position_dict[pk]["rows"][idx]
+
+                        text_center_draw(second_pdf_canvas, x, y + dy, val, "Helvetica", 8)
                 idx += 1
 
-    pdf_canvas.showPage()
+    # page1
+    first_pdf_canvas.showPage()
     # page2
+    second_pdf_canvas.showPage()
+    
+    first_pdf_canvas.save()
+    second_pdf_canvas.save()
 
-    pdf_canvas.showPage()
-    pdf_canvas.save()
+    packet_1.seek(0)
+    packet_2.seek(0)
 
-    packet.seek(0)
+    first_page_pdf = PdfReader(packet_1)
+    second_page_pdf = PdfReader(packet_2)
 
-    new_pdf = PdfReader(packet)
+
     existing_pdf = PdfReader(open("vics-stand.pdf", "rb"))
     output = PdfWriter()
-    page = existing_pdf.pages[0]
-    page.merge_page(new_pdf.pages[0])
-    nextPage = existing_pdf.pages[1]
-    output.add_page(page)
-    output.add_page(nextPage)
+    first_page = existing_pdf.pages[0]
+    first_page.merge_page(first_page_pdf.pages[0])
+
+    second_Page = existing_pdf.pages[1]
+    second_Page.merge_page(second_page_pdf.pages[0])
+    output.add_page(first_page)
+    output.add_page(second_Page)
     output_stream = open(output_pdf_path, "wb")
     output.write(output_stream)
     output_stream.close()

@@ -43,13 +43,13 @@
             "Weight": "5.6",
             "AddInfo": "some text",
             "PalletSlip": "N"
-         },
+         }, 
          {
             "OrderNo": "1001",
             "Pkgs": "1",
             "Weight": "15.4",
             "AddInfo": "some text 2",
-            "PalletSlip": "N"
+            "PalletSlip": "Y"
          },
          {
             "OrderNo": "1002",
@@ -290,14 +290,14 @@
        "DeclaredValue": "900.50",
        "DeclaredValuePer": "xxx",
        "CODAmount": "500.12",
-       "Collect": "",
+       "Collect": "X",
        "Prepaid": "X",
-       "CustCheck": "",
-       "TLByShipper": "",
-       "TLByDriver": "",
-       "FCByShipper": "",
-       "FCByDriverContains": "",
-       "FCByDriverPieces": ""
+       "CustCheck": "X",
+       "TLByShipper": "X",
+       "TLByDriver": "X",
+       "FCByShipper": "X",
+       "FCByDriverContains": "X",
+       "FCByDriverPieces": "X"
 
    }
 }
