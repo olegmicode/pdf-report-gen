@@ -146,9 +146,9 @@ position_dict = {
                 "dy": 0
             },
             "PalletSlip": {
-                "xY": 352.5,
-                "xN": 388.5,
-                "dx": 0.5, 
+                "Y": 352.5,
+                "N": 388.5,
+                "dx": 0.5,
                 "dy": 1
             },
         },
@@ -181,8 +181,6 @@ position_dict = {
             275,
             257,
             239,
-
-
         ]
     },
     "CarrierInfo": {
@@ -277,63 +275,67 @@ position_dict = {
             210,
             192,
             174,
-            156,      
+            156,
 
         ]
     },
     "Footer": {
-       "DeclaredValue": {
-           "x": 72,
-           "y": 146
-       },
-       "DeclaredValuePer": {
-           "x": 150,
-           "y": 146
-       },
-       "CODAmount": {
-           "x": 485,
-           "y": 172
-       },
-       "Collect": {
-           "x": 464,
-           "y": 161
-       },
-       "Prepaid": {
-           "x": 531,
-           "y": 161
-       },
-       "CustCheck": {
-           "x": 514,
-           "y": 147
-       },
-       "TLByShipper": {
-           "x": 232,
-           "y": 72
-       },
-       "TLByDriver": {
-           "x": 232,
-           "y": 58
-       },
-       "FCByShipper": {
-           "x": 295,
-           "y": 71
-       },
-       "FCByDriverContains": {
-           "x": 295,
-           "y": 56
-       },
-       "FCByDriverPieces": {
-           "x": 295,
-           "y": 41
-       }
+        "DeclaredValue": {
+            "x": 72,
+            "y": 146
+        },
+        "DeclaredValuePer": {
+            "x": 150,
+            "y": 146
+        },
+        "CODAmount": {
+            "x": 485,
+            "y": 172
+        },
+        "Collect": {
+            "x": 464,
+            "y": 161
+        },
+        "Prepaid": {
+            "x": 531,
+            "y": 161
+        },
+        "CustCheck": {
+            "x": 514,
+            "y": 147
+        },
+        "TLByShipper": {
+            "x": 232,
+            "y": 72
+        },
+        "TLByDriver": {
+            "x": 232,
+            "y": 58
+        },
+        "FCByShipper": {
+            "x": 295,
+            "y": 71
+        },
+        "FCByDriverContains": {
+            "x": 295,
+            "y": 56
+        },
+        "FCByDriverPieces": {
+            "x": 295,
+            "y": 41
+        }
     }
 }
 
-def text_center_draw(canvas, x, y, text, font, size):
-     width = canvas.stringWidth(text=text, fontName=font, fontSize=size)
-     canvas.drawString(x-(width/2), y, text)
 
-pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty", "BOL", "CarrierDetails", "Footer"]
+def text_center_draw(canvas, x, y, text, font, size):
+    width = canvas.stringWidth(text=text, fontName=font, fontSize=size)
+    canvas.drawString(x-(width/2), y, text)
+
+
+pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty",
+               "BOL", "CarrierDetails", "Footer"]
+
 
 def generate_pdf_from_json(json_file_path, output_pdf_path):
     with open(json_file_path) as file:
@@ -347,34 +349,33 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     packet_2 = io.BytesIO()
     first_pdf_canvas = canvas.Canvas(packet_1, pagesize=letter)
     second_pdf_canvas = canvas.Canvas(packet_2, pagesize=letter)
+    second_pdf_canvas.setFont("Helvetica", 8)
+    first_pdf_canvas.setFont("Helvetica", 8)
     # page 1
     for pk in data:
         if pk in pkey_types1:
             for key in data[pk]:
                 x = position_dict[pk][key]["x"]
                 y = position_dict[pk][key]["y"]
-                first_pdf_canvas.setFont("Helvetica", 8)
-                second_pdf_canvas.setFont("Helvetica", 8)
-                text_center_draw(first_pdf_canvas, x, y, data[pk][key], "Helvetica", 8)
+                text_center_draw(first_pdf_canvas, x, y,
+                                 data[pk][key], "Helvetica", 8)
         elif pk == "OrderInfo":
             idx = 0
             for row_data in data[pk]['Items']:
                 for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
                     val = row_data[key]
                     if idx < 4:
-                        
+
                         dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
                         y = position_dict["OrderInfo"]["rows"][idx]
                         # print(x, y, dy)
-                        if val == "N":
-                            x = position_dict["OrderInfo"]["page_one_column"][key]["xN"]
-                            val = "O"
-                        elif val == "Y":
-                            x = position_dict["OrderInfo"]["page_one_column"][key]["xY"]
+                        if key == "PalletSlip":
+                            x = position_dict["OrderInfo"]["page_one_column"][key][val]
                             val = "O"
                         else:
                             x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
-                        text_center_draw(first_pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                        text_center_draw(first_pdf_canvas, x,
+                                         y + dy, val, "Helvetica", 8)
                     elif idx < 19:
                         dx = position_dict["OrderInfo"]["page_one_column"][key]["dx"]
                         dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
@@ -387,8 +388,9 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                             val = "O"
                         else:
                             x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
-                        text_center_draw(second_pdf_canvas, x - dx, y + dy, val, "Helvetica", 8)
-                        
+                        text_center_draw(second_pdf_canvas,
+                                         x - dx, y + dy, val, "Helvetica", 8)
+
                 idx += 1
         elif pk == "CarrierInfo":
             idx = 0
@@ -399,20 +401,22 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                         x = position_dict[pk]["page_one_column"][key]["x"]
                         dy = position_dict[pk]["page_one_column"][key]["dy"]
                         y = position_dict[pk]["rows"][idx]
-                        text_center_draw(first_pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                        text_center_draw(first_pdf_canvas, x,
+                                         y + dy, val, "Helvetica", 8)
                     elif idx < 11:
                         x = position_dict[pk]["page_one_column"][key]["x"]
                         dy = position_dict[pk]["page_two_column"][key]["dy"]
                         y = position_dict[pk]["rows"][idx]
 
-                        text_center_draw(second_pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                        text_center_draw(second_pdf_canvas, x,
+                                         y + dy, val, "Helvetica", 8)
                 idx += 1
 
     # page1
     first_pdf_canvas.showPage()
     # page2
     second_pdf_canvas.showPage()
-    
+
     first_pdf_canvas.save()
     second_pdf_canvas.save()
 
@@ -421,7 +425,6 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
 
     first_page_pdf = PdfReader(packet_1)
     second_page_pdf = PdfReader(packet_2)
-
 
     existing_pdf = PdfReader(open("vics-stand.pdf", "rb"))
     output = PdfWriter()
