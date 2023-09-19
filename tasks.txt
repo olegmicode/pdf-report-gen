@@ -1,0 +1,2 @@
+- draw circle in pallet/slip in customer ordersection
+- multiple page

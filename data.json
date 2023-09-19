@@ -43,13 +43,13 @@
             "Weight": "5.6",
             "AddInfo": "some text",
             "PalletSlip": "N"
-         },
+         }, 
          {
             "OrderNo": "1001",
             "Pkgs": "1",
             "Weight": "15.4",
             "AddInfo": "some text 2",
-            "PalletSlip": "N"
+            "PalletSlip": "Y"
          },
          {
             "OrderNo": "1002",
@@ -169,6 +169,27 @@
             "Weight": "5.0",
             "AddInfo": "some text 2",
             "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1019",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1020",
+            "Pkgs": "1",
+            "Weight": "15.4",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
+         },
+         {
+            "OrderNo": "1021",
+            "Pkgs": "1",
+            "Weight": "5.0",
+            "AddInfo": "some text 2",
+            "PalletSlip": "N"
          }
       ]
    },
@@ -283,21 +304,220 @@
             "Desc": "Other stuff",
             "NMFC": "234523454",
             "Class": "85"
+         },
+         {
+            "HUQty": "11",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "12",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "13",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "14",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "15",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "16",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "17",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "18",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "19",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "20",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "21",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "22",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "23",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "24",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "25",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "26",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "27",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
+         },
+         {
+            "HUQty": "28",
+            "HUType": "PLTS",
+            "PkgQty": "48",
+            "PkgType": "CTNS",
+            "Weight": "425 LBS",
+            "HM": "",
+            "Desc": "Other stuff",
+            "NMFC": "234523454",
+            "Class": "85"
          }
+         
       ]
    },
    "Footer": {
        "DeclaredValue": "900.50",
        "DeclaredValuePer": "xxx",
        "CODAmount": "500.12",
-       "Collect": "",
+       "Collect": "X",
        "Prepaid": "X",
-       "CustCheck": "",
-       "TLByShipper": "",
-       "TLByDriver": "",
-       "FCByShipper": "",
-       "FCByDriverContains": "",
-       "FCByDriverPieces": ""
+       "CustCheck": "X",
+       "TLByShipper": "X",
+       "TLByDriver": "X",
+       "FCByShipper": "X",
+       "FCByDriverContains": "X",
+       "FCByDriverPieces": "X"
 
    }
 }
