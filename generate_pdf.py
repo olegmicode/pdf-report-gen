@@ -277,9 +277,16 @@ position_dict = {
             196,
             178,
             160,
+            142,
+            124,
+            104,
+            86,
+            68,
+            50,
+            32,
+            14
         ],
         "sub_total": 32
-
     },
     "Footer": {
         "DeclaredValue": {
@@ -488,7 +495,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                             val = row_data[key]
                             dx = position_dict["OrderInfo"]["page_one_column"][key]["dx"]
                             dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
-                            y = position_dict["OrderInfo"]["rows"][idx]
+                            y = position_dict["OrderInfo"]["rows"][idx-i*15]
                             #sub total
                             if key == "Pkgs":
                                 sub_Pkgs_total += float(val)
@@ -517,10 +524,10 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                 for row_data in data[pk]['Items']:
                     for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
                         val = row_data[key]
-                        if endpoint+2 > idx > firstpoint+1:
+                        if endpoint+3 > idx > firstpoint+2:
                             x = position_dict[pk]["page_one_column"][key]["x"]
                             dy = position_dict[pk]["page_one_column"][key]["dy"]
-                            y = position_dict[pk]["rows"][idx]
+                            y = position_dict[pk]["rows"][idx - i*16]
                             text_center_draw(pdf_canvas, x, y + dy, val, "Helvetica", 8)
                             if key == "HUQty":
                                 sub_hu_qty_total += float(val)
@@ -551,6 +558,9 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     output.add_page(first_page)
     #adding rest of page to output.
     for i in range(page_cnt):
+        packet.seek(0)
+        canvas_page_pdf = PdfReader(packet)
+        existing_pdf = PdfReader(open("vics-stand.pdf", "rb"))
         next_page = existing_pdf.pages[1]
         next_page.merge_page(canvas_page_pdf.pages[i + 1])
         output.add_page(next_page)
