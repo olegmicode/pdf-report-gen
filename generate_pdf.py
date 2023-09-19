@@ -524,7 +524,8 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                 for row_data in data[pk]['Items']:
                     for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
                         val = row_data[key]
-                        if endpoint+3 > idx > firstpoint+2:
+                        if endpoint+3 > idx > firstpoint+1+i:
+                            print(i, idx)
                             x = position_dict[pk]["page_one_column"][key]["x"]
                             dy = position_dict[pk]["page_one_column"][key]["dy"]
                             y = position_dict[pk]["rows"][idx - i*16]
