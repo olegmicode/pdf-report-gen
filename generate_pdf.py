@@ -1,29 +1,37 @@
 from PyPDF2 import PdfWriter, PdfReader
 import io
 import json
+import math
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-from reportlab.pdfbase.pdfmetrics import registerFontFamily
-
-registerFontFamily('Vera', normal='Vera', bold='',
-                   italic='VeraIt', boldItalic='VeraBI')
+import barcode
+from barcode.writer import ImageWriter
+from PIL import Image
 # Array
 position_dict = {
+    "first_page_number": {
+        "x": 550,
+        "y": 707
+    },
+    "next_page_number":{
+        "x": 550,
+        "y": 725
+    },
     "ShipFrom": {
         "Name": {
-            "x": 190,
+            "x": 85,
             "y": 678
         },
         "Address": {
-            "x": 190,
+            "x": 133,
             "y": 664
         },
         "City/State/Zip": {
-            "x": 190,
+            "x": 136,
             "y": 650
         },
         "SID#": {
-            "x": 190,
+            "x": 84,
             "y": 636
         },
         "FOB": {
@@ -34,16 +42,16 @@ position_dict = {
     "ShipTo": {
 
         "Name": {
-            "x": 190,
+            "x": 96,
             "y": 606
         }, "Address": {
-            "x": 190,
+            "x": 99,
             "y": 592
         }, "City/State/Zip": {
-            "x": 190,
+            "x": 126,
             "y": 578
         }, "SID#": {
-            "x": 190,
+            "x": 87,
             "y": 564
         }, "FOB": {
             "x": 190,
@@ -71,39 +79,41 @@ position_dict = {
     },
     "BOL": {
         "BOLNumber": {
-            "x": 490,
+            "x": 450,
             "y": 682
         },
         "BarCode": {
-            "x": 490,
-            "y": 682
+            "x": 370,
+            "y": 642
         }
     },
     "CarrierDetails": {
 
         "CarrierName": {
-            "x": 485,
+            "x": 420,
             "y": 617
         },
         "TrailerNo": {
-            "x": 485,
+            "x": 422,
             "y": 605
         },
         "SealNo": {
-            "x": 485,
+            "x": 417,
             "y": 593
         },
         "SCAC": {
-            "x": 485,
+            "x": 385,
             "y": 575
         },
         "PRO": {
-            "x": 485,
-            "y": 565
+            "x": 415,
+            "y": 563
         },
         "PROBarCode": {
-            "x": 485,
-            "y": 545
+            "Image_x": 370,
+            "Image_y": 527,
+            "x": 390,
+            "y": 518
         },
         "Prepaid": {
             "x": 392,
@@ -157,30 +167,30 @@ position_dict = {
             400,
             382,
             364,
-            653,
-            635,
-            617,
-            599,
-            581,
-            563,
-            545,
-            527,
-            509,
-            491,
+            654,
+            636,
+            618,
+            600,
+            582,
+            564,
+            546,
+            528,
+            510,
+            492,
             473,
-            455,
-            437,
-            419,
-            401,
-            383,
-            365,
-            347,
-            329,
-            311,
-            293,
-            275,
-            257,
-            239,
+            456,
+            438,
+            420,
+            402,
+            384,
+            366,
+            348,
+            330,
+            312,
+            294,
+            276,
+            258,
+            240,
         ]
     },
     "CarrierInfo": {
@@ -224,40 +234,31 @@ position_dict = {
         },
         "page_two_column": {
             "HUQty": {
-                "x": 55,
-                "dy": 4
+                "x": 55
             },
             "HUType": {
-                "x": 90,
-                "dy": 4
+                "x": 90
             },
             "PkgQty": {
-                "x": 127,
-                "dy": 4
+                "x": 127
             },
             "PkgType": {
-                "x": 163,
-                "dy": 4
+                "x": 163
             },
             "Weight": {
-                "x": 210,
-                "dy": 4
+                "x": 210
             },
             "HM": {
-                "x": 254,
-                "dy": 4
+                "x": 254
             },
             "Desc": {
-                "x": 380,
-                "dy": 4
+                "x": 380
             },
             "NMFC": {
-                "x": 510,
-                "dy": 4
+                "x": 510
             },
             "Class": {
-                "x": 555,
-                "dy": 4
+                "x": 555
             },
         },
         "rows": [
@@ -266,18 +267,19 @@ position_dict = {
             246,
             228,
             210,
-            318,
-            300,
-            282,
-            264,
-            246,
-            228,
-            210,
-            192,
-            174,
-            156,
+            322,
+            304,
+            286,
+            268,
+            250,
+            232,
+            214,
+            196,
+            178,
+            160,
+        ],
+        "sub_total": 32
 
-        ]
     },
     "Footer": {
         "DeclaredValue": {
@@ -327,73 +329,100 @@ position_dict = {
     }
 }
 
-
 def text_center_draw(canvas, x, y, text, font, size):
     width = canvas.stringWidth(text=text, fontName=font, fontSize=size)
     canvas.drawString(x-(width/2), y, text)
 
-
-pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty",
-               "BOL", "CarrierDetails", "Footer"]
-
+pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty", "BOL", "CarrierDetails", "Footer"]
 
 def generate_pdf_from_json(json_file_path, output_pdf_path):
     with open(json_file_path) as file:
         data = json.load(file)
 
     json_data = json.dumps(data)
-
     data = json.loads(json_data)
+    packet = io.BytesIO()
 
-    packet_1 = io.BytesIO()
-    packet_2 = io.BytesIO()
-    first_pdf_canvas = canvas.Canvas(packet_1, pagesize=letter)
-    second_pdf_canvas = canvas.Canvas(packet_2, pagesize=letter)
-    second_pdf_canvas.setFont("Helvetica", 8)
-    first_pdf_canvas.setFont("Helvetica", 8)
-    # page 1
+    pdf_canvas = canvas.Canvas(packet, pagesize=letter)
+    pdf_canvas.setFont("Helvetica", 8)
+
+    x = position_dict["first_page_number"]["x"]
+    y = position_dict["first_page_number"]["y"]
+    text_center_draw(pdf_canvas, x, y, "1", "Helvetica", 35)
     for pk in data:
         if pk in pkey_types1:
             for key in data[pk]:
                 x = position_dict[pk][key]["x"]
                 y = position_dict[pk][key]["y"]
-                text_center_draw(first_pdf_canvas, x, y,
-                                 data[pk][key], "Helvetica", 8)
-        elif pk == "OrderInfo":
+                if key == "BarCode":
+                    #generate barcode                 
+                    code128 = barcode.Code128(str(data[pk][key]), writer=ImageWriter())
+                    filename = "Barcode"
+                    code128.save(filename)
+                    image = Image.open("BarCode.png")
+                    # Remove the text portion by cropping the image
+                    cropped_image = image.crop((0, 0, image.width, image.height - 90))  
+                    # Adjust the cropping dimensions as needed
+                    # Save the modified image without the barcode number
+                    cropped_image.save("BarCode_noText.png")
+                    #draw the barcode image onto the canvas
+                    barcode_width = 150
+                    barcode_height = 32
+                    x = position_dict[pk][key]["x"]
+                    y = position_dict[pk][key]["y"]
+                    filename = "Barcode_noText.png"
+                    pdf_canvas.drawImage(filename, x, y, width=barcode_width, height=barcode_height)
+                elif key == "PROBarCode":
+                    code128 = barcode.get('code128', str(data[pk][key]), writer=ImageWriter())
+                    filename = "PROBarCode"
+                    code128.save(filename)
+                    image = Image.open("PROBarCode.png")
+                    # Remove the text portion by cropping the image
+                    cropped_image = image.crop((0, 0, image.width, image.height - 90))  
+                    # Adjust the cropping dimensions as needed
+                    # Save the modified image without the barcode number
+                    cropped_image.save("PROBarCode_noText.png")
+                    #draw the barcode image onto the canvas
+                    barcode_width = 150
+                    barcode_height = 32
+                    image_x = position_dict[pk][key]["Image_x"]
+                    image_y = position_dict[pk][key]["Image_y"]
+                    filename = "PROBarCode_noText.png"
+                    pdf_canvas.drawImage(filename, image_x, image_y, width=barcode_width, height=barcode_height)  
+                else:
+                    text_center_draw(pdf_canvas, x, y, data[pk][key], "Helvetica", 8)
+        if pk == "OrderInfo":
             idx = 0
+            radius = 7
+            Pkgs_total = 0
+            Order_weight_total = 0
             for row_data in data[pk]['Items']:
                 for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
                     val = row_data[key]
                     if idx < 4:
-
                         dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
                         y = position_dict["OrderInfo"]["rows"][idx]
-                        # print(x, y, dy)
+                        if key == "Pkgs":
+                            Pkgs_total += float(val)
+                        if key == "Weight":
+                            Order_weight_total += float(val)
                         if key == "PalletSlip":
                             x = position_dict["OrderInfo"]["page_one_column"][key][val]
-                            val = "O"
+                            pdf_canvas.circle(x, y + 3, radius)
                         else:
                             x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
-                        text_center_draw(first_pdf_canvas, x,
-                                         y + dy, val, "Helvetica", 8)
-                    elif idx < 19:
-                        dx = position_dict["OrderInfo"]["page_one_column"][key]["dx"]
-                        dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
-                        y = position_dict["OrderInfo"]["rows"][idx]
-                        if val == "N":
-                            x = position_dict["OrderInfo"]["page_one_column"][key]["xN"]
-                            val = "O"
-                        elif val == "Y":
-                            x = position_dict["OrderInfo"]["page_one_column"][key]["xY"]
-                            val = "O"
-                        else:
-                            x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
-                        text_center_draw(second_pdf_canvas,
-                                         x - dx, y + dy, val, "Helvetica", 8)
-
+                            text_center_draw(pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                    else: 
+                        if key == "Pkgs":
+                            Pkgs_total += float(val)
+                        if key == "Weight":
+                            Order_weight_total += float(val)
                 idx += 1
         elif pk == "CarrierInfo":
             idx = 0
+            HU_qty_total = 0
+            Pkg_qty_total = 0
+            Weight_total = 0
             for row_data in data[pk]['Items']:
                 for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
                     val = row_data[key]
@@ -401,40 +430,132 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                         x = position_dict[pk]["page_one_column"][key]["x"]
                         dy = position_dict[pk]["page_one_column"][key]["dy"]
                         y = position_dict[pk]["rows"][idx]
-                        text_center_draw(first_pdf_canvas, x,
-                                         y + dy, val, "Helvetica", 8)
-                    elif idx < 11:
-                        x = position_dict[pk]["page_one_column"][key]["x"]
-                        dy = position_dict[pk]["page_two_column"][key]["dy"]
-                        y = position_dict[pk]["rows"][idx]
-
-                        text_center_draw(second_pdf_canvas, x,
-                                         y + dy, val, "Helvetica", 8)
+                        text_center_draw(pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                        if key == "HUQty":
+                            HU_qty_total += float(val)
+                        if key == "PkgQty":
+                            Pkg_qty_total += float(val)
+                        if key == "Weight":
+                            Weight_total += float(val.split(" ")[0])
+                    else:
+                        if key == "HUQty":
+                            HU_qty_total += float(val)
+                        if key == "PkgQty":
+                            Pkg_qty_total += float(val)
+                        if key == "Weight":
+                            Weight_total += float(val.split(" ")[0])
                 idx += 1
+    #order info
+    x = position_dict["OrderInfo"]["page_one_column"]["Pkgs"]["x"]
+    y = position_dict["OrderInfo"]["rows"][3]
+    text_center_draw(pdf_canvas, x , y - 18, str(Pkgs_total), "Helvetica", 8)
+    x = position_dict["OrderInfo"]["page_one_column"]["Weight"]["x"]
+    text_center_draw(pdf_canvas, x , y - 18, str(Order_weight_total), "Helvetica", 8)
+    #carrier info            
+    x = position_dict["CarrierInfo"]["page_one_column"]["HUQty"]["x"]
+    y = position_dict["CarrierInfo"]["rows"][4]
+    text_center_draw(pdf_canvas, x , y - 18, str(HU_qty_total), "Helvetica", 8)
+    x = position_dict["CarrierInfo"]["page_one_column"]["PkgQty"]["x"]
+    text_center_draw(pdf_canvas, x , y - 18, str(Pkg_qty_total), "Helvetica", 8)
+    x = position_dict["CarrierInfo"]["page_one_column"]["Weight"]["x"]
+    text_center_draw(pdf_canvas, x , y - 18, str(Weight_total), "Helvetica", 8)
+    # go to next page
+    pdf_canvas.showPage()
+    items = max(len(data["OrderInfo"]["Items"]), len(data["CarrierInfo"]["Items"]))
+    page_cnt = math.ceil((items-4)/15)
+    for i in range(page_cnt):
+        pdf_canvas.setFont("Helvetica", 8)
+        x = position_dict["next_page_number"]["x"]
+        y = position_dict["next_page_number"]["y"]
+        text_center_draw(pdf_canvas, x, y, str(i+2), "Helvetica", 35)
 
-    # page1
-    first_pdf_canvas.showPage()
-    # page2
-    second_pdf_canvas.showPage()
+        endpoint = (i+1) * 15 + 3
+        firstpoint = i*15 + 3
+        #order sub total
+        sub_Pkgs_total = 0
+        sub_Order_weight_total = 0
+        #carrier sub total
+        sub_hu_qty_total = 0
+        sub_pkg_qty_total = 0
+        sub_weight_total = 0
+        for pk in data:
+            if pk == "OrderInfo":
+                idx = 0
+                radius = 7
+                for row_data in data[pk]['Items']:
+                    if endpoint + 1 > idx > firstpoint:
+                        for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
+                            val = row_data[key]
+                            dx = position_dict["OrderInfo"]["page_one_column"][key]["dx"]
+                            dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
+                            y = position_dict["OrderInfo"]["rows"][idx]
+                            #sub total
+                            if key == "Pkgs":
+                                sub_Pkgs_total += float(val)
+                                x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
+                                text_center_draw(pdf_canvas, x - dx, y + dy, val, "Helvetica", 8)
+                            elif key == "Weight":
+                                sub_Order_weight_total += float(val)
+                                x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
+                                text_center_draw(pdf_canvas, x - dx, y + dy, val, "Helvetica", 8)
+                            elif key == "PalletSlip":
+                                x = position_dict["OrderInfo"]["page_one_column"][key][val]
+                                pdf_canvas.circle(x, y + 3, radius)
+                            else:
+                                x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
+                                text_center_draw(pdf_canvas, x - dx, y + dy, val, "Helvetica", 8)
+                    idx += 1
+                #order info
+                x = position_dict["OrderInfo"]["page_one_column"]["Pkgs"]["x"]
+                y = position_dict["OrderInfo"]["rows"][18]
+                text_center_draw(pdf_canvas, x , y - 18, str(sub_Pkgs_total), "Helvetica", 8)
 
-    first_pdf_canvas.save()
-    second_pdf_canvas.save()
-
-    packet_1.seek(0)
-    packet_2.seek(0)
-
-    first_page_pdf = PdfReader(packet_1)
-    second_page_pdf = PdfReader(packet_2)
+                x = position_dict["OrderInfo"]["page_one_column"]["Weight"]["x"]
+                text_center_draw(pdf_canvas, x , y - 18, str(round(sub_Order_weight_total, 2)), "Helvetica", 8)
+            elif pk == "CarrierInfo":
+                idx = 0
+                for row_data in data[pk]['Items']:
+                    for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
+                        val = row_data[key]
+                        if endpoint+2 > idx > firstpoint+1:
+                            x = position_dict[pk]["page_one_column"][key]["x"]
+                            dy = position_dict[pk]["page_one_column"][key]["dy"]
+                            y = position_dict[pk]["rows"][idx]
+                            text_center_draw(pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                            if key == "HUQty":
+                                sub_hu_qty_total += float(val)
+                            elif key == "PkgQty":
+                                sub_pkg_qty_total += float(val)
+                            elif key == "Weight":
+                                sub_weight_total += float(val.split(" ")[0])
+                    idx += 1
+                #carrier info            
+                x = position_dict["CarrierInfo"]["page_one_column"]["HUQty"]["x"]
+                y = position_dict["CarrierInfo"]["sub_total"]
+                val = str(round(sub_hu_qty_total, 2))
+                text_center_draw(pdf_canvas, x , y, val, "Helvetica", 8)
+                x = position_dict["CarrierInfo"]["page_one_column"]["PkgQty"]["x"]
+                text_center_draw(pdf_canvas, x , y, str(sub_pkg_qty_total), "Helvetica", 8)
+                x = position_dict["CarrierInfo"]["page_one_column"]["Weight"]["x"]
+                text_center_draw(pdf_canvas, x , y, str(sub_weight_total), "Helvetica", 8)
+        pdf_canvas.showPage()
+    # all canvas page save.
+    pdf_canvas.save()
+    packet.seek(0)
+    canvas_page_pdf = PdfReader(packet)
 
     existing_pdf = PdfReader(open("vics-stand.pdf", "rb"))
     output = PdfWriter()
     first_page = existing_pdf.pages[0]
-    first_page.merge_page(first_page_pdf.pages[0])
-
-    second_Page = existing_pdf.pages[1]
-    second_Page.merge_page(second_page_pdf.pages[0])
+    first_page.merge_page(canvas_page_pdf.pages[0])
     output.add_page(first_page)
-    output.add_page(second_Page)
+    #adding rest of page to output.
+    for i in range(page_cnt):
+        next_page = existing_pdf.pages[1]
+        next_page.merge_page(canvas_page_pdf.pages[i + 1])
+        output.add_page(next_page)
     output_stream = open(output_pdf_path, "wb")
     output.write(output_stream)
     output_stream.close()
+
+
