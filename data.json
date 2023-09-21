@@ -70,7 +70,7 @@
             "Pkgs": "1",
             "Weight": "15.4",
             "AddInfo": "some text 2",
-            "PalletSlip": "N"
+            "PalletSlip": "Y"
          },
          {
             "OrderNo": "1005",
