@@ -591,6 +591,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
 
                 x = position_dict["OrderInfo"]["page_one_column"]["Weight"]["x"]
                 text_center_draw(pdf_canvas, x , y - 18, str(round(sub_Order_weight_total, 2)), "Helvetica", 8)
+<<<<<<< HEAD
             # elif pk == "CarrierInfo":
             #     idx = 0
             #     for row_data in data[pk]['Items']:
@@ -618,6 +619,35 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
             #     text_center_draw(pdf_canvas, x , y, str(sub_pkg_qty_total), "Helvetica", 8)
             #     x = position_dict["CarrierInfo"]["page_one_column"]["Weight"]["x"]
             #     text_center_draw(pdf_canvas, x , y, str(sub_weight_total), "Helvetica", 8)
+=======
+            elif pk == "CarrierInfo":
+                idx = 0
+                for row_data in data[pk]['Items']:
+                    for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
+                        val = row_data[key]
+                        if endpoint+3 > idx > firstpoint+1+i:
+                            # print(i, idx)
+                            x = position_dict[pk]["page_one_column"][key]["x"]
+                            dy = position_dict[pk]["page_one_column"][key]["dy"]
+                            y = position_dict[pk]["rows"][idx - i*16]
+                            text_center_draw(pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                            if key == "HUQty":
+                                sub_hu_qty_total += float(val)
+                            elif key == "PkgQty":
+                                sub_pkg_qty_total += float(val)
+                            elif key == "Weight":
+                                sub_weight_total += float(val.split(" ")[0])
+                    idx += 1
+                #carrier info            
+                x = position_dict["CarrierInfo"]["page_one_column"]["HUQty"]["x"]
+                y = position_dict["CarrierInfo"]["sub_total"]
+                val = str(round(sub_hu_qty_total, 2))
+                text_center_draw(pdf_canvas, x , y, val, "Helvetica", 8)
+                x = position_dict["CarrierInfo"]["page_one_column"]["PkgQty"]["x"]
+                text_center_draw(pdf_canvas, x , y, str(sub_pkg_qty_total), "Helvetica", 8)
+                x = position_dict["CarrierInfo"]["page_one_column"]["Weight"]["x"]
+                text_center_draw(pdf_canvas, x , y, str(sub_weight_total), "Helvetica", 8)
+>>>>>>> 22ad3f60ce83acdf404d1a84e6b07402a541502f
         pdf_canvas.showPage()
     # all canvas page save.
     pdf_canvas.save()
