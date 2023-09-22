@@ -439,7 +439,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     page_cnt = math.ceil((items-4)/34)
 
     for i in range(page_cnt):
-        draw_new_page(pdf_canvas, draw_page)
+        draw_new_page(pdf_canvas, draw_page, data)
 
         pdf_canvas.setFont("Helvetica", 8)
         x = position_dict["next_page_number"]["x"]
@@ -668,16 +668,16 @@ def extract_additional_information(data):
 
     return {
         'pkgs': {
-            'total': Pkgs_total,
-            'qty_total': Pkg_qty_total,
+            'total': round(Pkgs_total, 2),
+            'qty_total': round(Pkg_qty_total, 2),
         },
-        'weight_total': Weight_total,
-        'order_weight_total': Order_weight_total,
-        'HU_qty_total': HU_qty_total,
+        'weight_total': round(Weight_total, 2),
+        'order_weight_total': round(Order_weight_total, 2),
+        'HU_qty_total': round(HU_qty_total, 2),
     }
 
 
-def draw_new_page(pdf_canvas, draw_page):
+def draw_new_page(pdf_canvas, draw_page, data):
     # draw rect
     x1 = draw_page["edge"]["x1"]
     x2 = draw_page["edge"]["x2"]
@@ -688,6 +688,7 @@ def draw_new_page(pdf_canvas, draw_page):
     # pdf_canvas.line(x1, y2, x2, y2)
     # pdf_canvas.line(x2, y2, x2, y1)
     # date
+
     x = draw_page["date"]["x"]
     y = draw_page["date"]["y"]
     text_center_draw(pdf_canvas, x, y,
@@ -700,8 +701,16 @@ def draw_new_page(pdf_canvas, draw_page):
 
     text_center_draw(pdf_canvas, 500, 722, "Page", "Helvetica", 13)
     text_center_draw(pdf_canvas, 380, 700,
-                     "Bill of Lading Number", "Helvetica", 8)
-    pdf_canvas.line(420, 700, 560, 700)
+                     "Bill of Lading Number:", "Helvetica", 8)
+    x = position_dict["BOL"]["BOLNumber"]["x"]
+    y = position_dict["BOL"]["BOLNumber"]["y"]
+    # print(data)
+    val = str(data["BOL"]["BOLNumber"])
+    print(val)
+    text_center_draw(pdf_canvas, 450, 700,
+                     val, "Helvetica", 8)
+
+    pdf_canvas.line(420, 702, 560, 702)
 
 
 def draw_stick_customer(pdf_canvas, y):
@@ -741,7 +750,7 @@ def carrier_information(data, pdf_canvas, idx):  # 10
         else:
             firstpoint = i*34 - (idx + 2) + 3
             endpoint = (i+1)*33-(idx + 2)+4
-            draw_new_page(pdf_canvas, draw_page)
+            draw_new_page(pdf_canvas, draw_page, data)
 
             x = position_dict["next_page_number"]["x"]
             y = position_dict["next_page_number"]["y"]
