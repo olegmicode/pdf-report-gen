@@ -7,6 +7,8 @@ from reportlab.lib.pagesizes import letter
 import barcode
 from barcode.writer import ImageWriter
 from PIL import Image
+from reportlab.lib.colors import white, black
+
 # Array
 draw_page = {
     "edge": {
@@ -27,7 +29,7 @@ draw_page = {
     },
     "title": {
         "x": 300,
-        "y": 720,
+        "y": 722,
         "text": "SUPPLEMENT TO THE BILL OF LADING"
     },
     "divider": {
@@ -425,7 +427,6 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
 
     pdf_canvas = canvas.Canvas(packet, pagesize=letter)
     pdf_canvas.setFont("Helvetica", 8)
-    
 
     info = extract_additional_information(data)
 
@@ -449,7 +450,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
         # order sub total
         sub_Pkgs_total = 0
         sub_Order_weight_total = 0
-        
+
         for pk in data:
             if pk == "OrderInfo":
                 idx = 0
@@ -461,7 +462,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                         for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
                             val = row_data[key]
                             dx = position_dict["OrderInfo"]["page_one_column"][key]["dx"]
-                            dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]                           
+                            dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
                             y = position_dict["OrderInfo"]["rows"][idx-i*34 + 5]
                             pdf_canvas.setFont("Helvetica", 8)
                             pdf_canvas.line(40, y, 570, y)
@@ -494,19 +495,21 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
                     idx += 1
 
         x = position_dict["OrderInfo"]["page_one_column"]["Pkgs"]["x"]
-        
+
         if (items - i * 34 - 4) > 34:
             y = position_dict["OrderInfo"]["rows"][43]
             draw_stick_customer(pdf_canvas, y)
-            custom_order_total(pdf_canvas, x, y, sub_Pkgs_total, sub_Order_weight_total)
+            custom_order_total(
+                pdf_canvas, x, y, sub_Pkgs_total, sub_Order_weight_total)
         # last of customer order info.
         elif (items - i * 34 - 4) < 34:
             idx = (items - i*34 - 4) % 34
             # print(idx)
             y = position_dict["OrderInfo"]["rows"][idx+5+4]
             draw_stick_customer(pdf_canvas, y)
-            custom_order_total(pdf_canvas, x, y, sub_Pkgs_total, sub_Order_weight_total)
-            #carrier information items //total
+            custom_order_total(
+                pdf_canvas, x, y, sub_Pkgs_total, sub_Order_weight_total)
+            # carrier information items //total
             carrier_information(data, pdf_canvas, idx+7)
         pdf_canvas.showPage()
     # all canvas page save.
@@ -548,12 +551,14 @@ def draw_on_page_one(pdf_canvas, data, info):
                 y = position_dict[pk][key]["y"]
                 if key == "BarCode":
                     # generate barcode
-                    code128 = barcode.Code128(str(data[pk][key]), writer=ImageWriter())
+                    code128 = barcode.Code128(
+                        str(data[pk][key]), writer=ImageWriter())
                     filename = "Barcode"
                     code128.save(filename)
                     image = Image.open("BarCode.png")
                     # Remove the text portion by cropping the image
-                    cropped_image = image.crop((0, 0, image.width, image.height - 90))
+                    cropped_image = image.crop(
+                        (0, 0, image.width, image.height - 90))
                     # Adjust the cropping dimensions as needed
                     # Save the modified image without the barcode number
                     cropped_image.save("BarCode_noText.png")
@@ -563,14 +568,17 @@ def draw_on_page_one(pdf_canvas, data, info):
                     x = position_dict[pk][key]["x"]
                     y = position_dict[pk][key]["y"]
                     filename = "Barcode_noText.png"
-                    pdf_canvas.drawImage(filename, x, y, width=barcode_width, height=barcode_height)
+                    pdf_canvas.drawImage(
+                        filename, x, y, width=barcode_width, height=barcode_height)
                 elif key == "PROBarCode":
-                    code128 = barcode.get('code128', str(data[pk][key]), writer=ImageWriter())
+                    code128 = barcode.get('code128', str(
+                        data[pk][key]), writer=ImageWriter())
                     filename = "PROBarCode"
                     code128.save(filename)
                     image = Image.open("PROBarCode.png")
                     # Remove the text portion by cropping the image
-                    cropped_image = image.crop((0, 0, image.width, image.height - 90))
+                    cropped_image = image.crop(
+                        (0, 0, image.width, image.height - 90))
                     # Adjust the cropping dimensions as needed
                     # Save the modified image without the barcode number
                     cropped_image.save("PROBarCode_noText.png")
@@ -580,9 +588,11 @@ def draw_on_page_one(pdf_canvas, data, info):
                     image_x = position_dict[pk][key]["Image_x"]
                     image_y = position_dict[pk][key]["Image_y"]
                     filename = "PROBarCode_noText.png"
-                    pdf_canvas.drawImage(filename, image_x, image_y, width=barcode_width, height=barcode_height)
+                    pdf_canvas.drawImage(
+                        filename, image_x, image_y, width=barcode_width, height=barcode_height)
                 else:
-                    text_center_draw(pdf_canvas, x, y-5, data[pk][key], "Helvetica", 8)
+                    text_center_draw(pdf_canvas, x, y-5,
+                                     data[pk][key], "Helvetica", 8)
         elif pk == "OrderInfo":
             idx = 0
             radius = 7
@@ -614,7 +624,8 @@ def draw_on_page_one(pdf_canvas, data, info):
                         x = position_dict[pk]["page_one_column"][key]["x"]
                         dy = position_dict[pk]["page_one_column"][key]["dy"]
                         y = position_dict[pk]["rows"][idx]
-                        text_center_draw(pdf_canvas, x, y-5, val, "Helvetica", 8)
+                        text_center_draw(pdf_canvas, x, y-5,
+                                         val, "Helvetica", 8)
                 else:
                     break
                 idx += 1
@@ -623,7 +634,8 @@ def draw_on_page_one(pdf_canvas, data, info):
     y = position_dict["OrderInfo"]["rows"][3]
     text_center_draw(pdf_canvas, x, y - 23, str(Pkgs_total), "Helvetica", 8)
     x = position_dict["OrderInfo"]["page_one_column"]["Weight"]["x"]
-    text_center_draw(pdf_canvas, x, y - 23, str(Order_weight_total), "Helvetica", 8)
+    text_center_draw(pdf_canvas, x, y - 23,
+                     str(Order_weight_total), "Helvetica", 8)
     # carrier info
     x = position_dict["CarrierInfo"]["page_one_column"]["HUQty"]["x"]
     y = position_dict["CarrierInfo"]["rows"][4]
@@ -678,14 +690,19 @@ def draw_new_page(pdf_canvas, draw_page):
     # date
     x = draw_page["date"]["x"]
     y = draw_page["date"]["y"]
-    text_center_draw(pdf_canvas, x, y, draw_page["date"]["text"], "Helvetica", 8)
+    text_center_draw(pdf_canvas, x, y,
+                     draw_page["date"]["text"], "Helvetica", 8)
 
-    text_center_draw(pdf_canvas, draw_page["title"]["x"], draw_page["title"]["y"], draw_page["title"]["text"], "Helvetica", 14)
-    pdf_canvas.line(draw_page["divider"]["x1"], draw_page["divider"] ["y1"], draw_page["divider"]["x2"], draw_page["divider"]["y2"])
+    text_center_draw(pdf_canvas, draw_page["title"]["x"], draw_page["title"]
+                     ["y"], draw_page["title"]["text"], "Helvetica", 14)
+    pdf_canvas.line(draw_page["divider"]["x1"], draw_page["divider"]
+                    ["y1"], draw_page["divider"]["x2"], draw_page["divider"]["y2"])
 
     text_center_draw(pdf_canvas, 500, 722, "Page", "Helvetica", 13)
-    text_center_draw(pdf_canvas, 380, 700, "Bill of Lading Number", "Helvetica", 8)
+    text_center_draw(pdf_canvas, 380, 700,
+                     "Bill of Lading Number", "Helvetica", 8)
     pdf_canvas.line(420, 700, 560, 700)
+
 
 def draw_stick_customer(pdf_canvas, y):
     pdf_canvas.line(190, y + 18, 190, y)
@@ -699,13 +716,14 @@ def draw_stick_customer(pdf_canvas, y):
 
 
 def custom_order_total(pdf_canvas, x, y, sub_Pkgs_total, sub_Order_weight_total):
-    text_center_draw(pdf_canvas, x, y , str(sub_Pkgs_total), "Helvetica", 8)
+    text_center_draw(pdf_canvas, x, y, str(sub_Pkgs_total), "Helvetica", 8)
     x = position_dict["OrderInfo"]["page_one_column"]["Weight"]["x"]
-    text_center_draw(pdf_canvas, x, y , str(round(sub_Order_weight_total, 2)), "Helvetica", 8)
+    text_center_draw(pdf_canvas, x, y, str(
+        round(sub_Order_weight_total, 2)), "Helvetica", 8)
     pdf_canvas.line(40, y, 570, y)
 
 
-def carrier_information(data, pdf_canvas, idx):#10
+def carrier_information(data, pdf_canvas, idx):  # 10
     # carrier sub total
     sub_hu_qty_total = 0
     sub_pkg_qty_total = 0
@@ -728,75 +746,91 @@ def carrier_information(data, pdf_canvas, idx):#10
             x = position_dict["next_page_number"]["x"]
             y = position_dict["next_page_number"]["y"]
             text_center_draw(pdf_canvas, x, y, str(i+2), "Helvetica", 15)
-            
+
             sub_hu_qty_total = 0
             sub_pkg_qty_total = 0
             sub_weight_total = 0
 
             y = 680
             carrier_info_header(pdf_canvas, y)
-        
+
         for pk in data:
-            if pk == "CarrierInfo":      
-                    id = 0
-                    for row_data in data[pk]['Items']:
-                        for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
-                            if endpoint > id > firstpoint:
-                                val = row_data[key]
-                                x = position_dict[pk]["page_one_column"][key]["x"]
-                                dy = position_dict[pk]["page_one_column"][key]["dy"]
-                                if i == 0:
-                                    y = position_dict[pk]["rows"][id+idx+2]
-                                else:
-                                    y = position_dict[pk]["rows"][id-i*34+5]
-                                draw_stick_carrier(pdf_canvas, y)
-                                text_center_draw(pdf_canvas, x, y + dy, val, "Helvetica", 8)
-                                if key == "HUQty":
-                                    sub_hu_qty_total += float(val)
-                                elif key == "PkgQty":
-                                    sub_pkg_qty_total += float(val)
-                                elif key == "Weight":
-                                    sub_weight_total += float(val.split(" ")[0])
-                        id += 1
+            if pk == "CarrierInfo":
+                id = 0
+                for row_data in data[pk]['Items']:
+                    for key in ["HUQty", "HUType", "PkgQty", "PkgType", "Weight", "HM", "Desc", "NMFC", "Class"]:
+                        if endpoint > id > firstpoint:
+                            val = row_data[key]
+                            x = position_dict[pk]["page_one_column"][key]["x"]
+                            dy = position_dict[pk]["page_one_column"][key]["dy"]
+                            if i == 0:
+                                y = position_dict[pk]["rows"][id+idx+2]
+                            else:
+                                y = position_dict[pk]["rows"][id-i*34+5]
+                            draw_stick_carrier(pdf_canvas, y)
+                            text_center_draw(
+                                pdf_canvas, x, y + dy, val, "Helvetica", 8)
+                            if key == "HUQty":
+                                sub_hu_qty_total += float(val)
+                            elif key == "PkgQty":
+                                sub_pkg_qty_total += float(val)
+                            elif key == "Weight":
+                                sub_weight_total += float(val.split(" ")[0])
+                    id += 1
         # carrier info
         x = position_dict["CarrierInfo"]["page_one_column"]["HUQty"]["x"]
         # y = position_dict["CarrierInfo"]["sub_total"]
         val = str(round(sub_hu_qty_total, 2))
         if (items - i * 34 - 5) > 34:
             y = position_dict["OrderInfo"]["rows"][43]
-            carrier_info_total(pdf_canvas, x, y, val, sub_pkg_qty_total, sub_weight_total)
+            carrier_info_total(pdf_canvas, x, y, val,
+                               sub_pkg_qty_total, sub_weight_total)
             draw_stick_carrier(pdf_canvas, y-18)
         elif (items - i * 34 - 5) < 34:
             id = (items - i * 34 - 5) % 34
             # print("index", i, id, idx)
             y = position_dict["OrderInfo"]["rows"][(id+idx+5)]
-            carrier_info_total(pdf_canvas, x, y, val, sub_pkg_qty_total, sub_weight_total)
+            carrier_info_total(pdf_canvas, x, y, val,
+                               sub_pkg_qty_total, sub_weight_total)
             draw_stick_carrier(pdf_canvas, y-18)
         pdf_canvas.showPage()
+
 
 def carrier_info_total(pdf_canvas, x, y, val, sub_pkg_qty_total, sub_weight_total):
     text_center_draw(pdf_canvas, x, y-18, val, "Helvetica", 8)
     x = position_dict["CarrierInfo"]["page_one_column"]["PkgQty"]["x"]
-    text_center_draw(pdf_canvas, x, y-18, str(sub_pkg_qty_total), "Helvetica", 8)
+    text_center_draw(pdf_canvas, x, y-18,
+                     str(sub_pkg_qty_total), "Helvetica", 8)
     x = position_dict["CarrierInfo"]["page_one_column"]["Weight"]["x"]
-    text_center_draw(pdf_canvas, x , y-18, str(sub_weight_total), "Helvetica", 8)
+    text_center_draw(pdf_canvas, x, y-18,
+                     str(sub_weight_total), "Helvetica", 8)
+
 
 def carrier_info_header(pdf_canvas, y):
-    text_center_draw(pdf_canvas, 310, y+3, "CARRIER INFORMATION", "Helvetica", 8)
-    pdf_canvas.line(40, y, 570, y)
-    
-    pdf_canvas.line(40, y+18, 40, y)
-    pdf_canvas.line(570, y+18, 570, y)
 
+    # pdf_canvas.line(40, y, 570, y)
+
+    # pdf_canvas.line(40, y+18, 40, y)
+    # pdf_canvas.line(570, y+18, 570, y)
+    pdf_canvas.setFillColor(black)
+    pdf_canvas.rect(40, y, 530, 18, fill=1)
+    pdf_canvas.setFillColor(white)
+
+    text_center_draw(pdf_canvas, 310, y+2,
+                     "CARRIER INFORMATION", "Helvetica", 8)
+    pdf_canvas.setFillColor(black)
+    # pdf_canvas.setFillColor(white)
+    # pdf_canvas.setStrokeColor(black)
     text_center_draw(pdf_canvas, 75, y-18, "HANDLING UNIT", "Helvetica", 8)
     text_center_draw(pdf_canvas, 145, y-18, "PACKAGE", "Helvetica", 8)
     text_center_draw(pdf_canvas, 210, y-22, "WEIGHT", "Helvetica", 8)
     text_center_draw(pdf_canvas, 250, y-22, "H.M.X", "Helvetica", 8)
-    text_center_draw(pdf_canvas, 375, y-22, "COMMODITY DESCRIPTION.", "Helvetica", 8)
+    text_center_draw(pdf_canvas, 375, y-22,
+                     "COMMODITY DESCRIPTION.", "Helvetica", 8)
     text_center_draw(pdf_canvas, 530, y-18, "LTL ONLY", "Helvetica", 8)
     pdf_canvas.line(40, y-18, 182, y-18)
     pdf_canvas.line(480, y-18, 570, y-18)
-    
+
     pdf_canvas.line(40, y, 40, y-36)
     pdf_canvas.line(570, y, 570, y-36)
     pdf_canvas.line(110, y, 110, y-36)
@@ -804,8 +838,8 @@ def carrier_info_header(pdf_canvas, y):
     pdf_canvas.line(235, y, 235, y-36)
     pdf_canvas.line(265, y, 265, y-36)
     pdf_canvas.line(480, y, 480, y-36)
-    
-    #1 down
+
+    # 1 down
     y = y-18
     pdf_canvas.line(75, y, 75, y-18)
     pdf_canvas.line(145, y, 145, y-18)
@@ -819,7 +853,8 @@ def carrier_info_header(pdf_canvas, y):
     text_center_draw(pdf_canvas, 165, y-18, "TYPE", "Helvetica", 8)
     text_center_draw(pdf_canvas, 510, y-18, "NMFC #", "Helvetica", 8)
     text_center_draw(pdf_canvas, 555, y-18, "CLASS", "Helvetica", 8)
-    
+
+
 def draw_stick_carrier(pdf_canvas, y):
     pdf_canvas.line(75, y+18, 75, y)
     pdf_canvas.line(145, y+18, 145, y)
@@ -831,23 +866,31 @@ def draw_stick_carrier(pdf_canvas, y):
     pdf_canvas.line(182, y+18, 182, y)
     pdf_canvas.line(235, y+18, 235, y)
     pdf_canvas.line(265, y+18, 265, y)
-    pdf_canvas.line(480, y+18, 480, y)  
+    pdf_canvas.line(480, y+18, 480, y)
 
     pdf_canvas.line(40, y, 570, y)
 
+
 def customer_order_header(pdf_canvas):
     pdf_canvas.setFont("Helvetica", 8)
-    text_center_draw(pdf_canvas, 300, 685, "CUSTOMER ORDER INFORMATION", "Helvetica", 8)
     pdf_canvas.line(40, 686, 570, 686)
 
     pdf_canvas.line(40, 740, 40, 686)
     pdf_canvas.line(570, 740, 570, 686)
 
-    text_center_draw(pdf_canvas, 115, 670, "CUSTOMER ORDER NUMBER", "Helvetica", 8)
+    pdf_canvas.setFillColor(black)
+    pdf_canvas.rect(40, 685, 530, 14, fill=1)
+    pdf_canvas.setFillColor(white)
+    text_center_draw(pdf_canvas, 300, 685,
+                     "CUSTOMER ORDER INFORMATION", "Helvetica", 8)
+    pdf_canvas.setFillColor(black)
+    text_center_draw(pdf_canvas, 115, 670,
+                     "CUSTOMER ORDER NUMBER", "Helvetica", 8)
     text_center_draw(pdf_canvas, 228, 670, "# PKGS", "Helvetica", 8)
     text_center_draw(pdf_canvas, 300, 670, "WEIGHT", "Helvetica", 8)
     text_center_draw(pdf_canvas, 370, 670, "PALLET/SLIP", "Helvetica", 8)
-    text_center_draw(pdf_canvas, 490, 670, "ADDITIONAL SHIPPER INFO.", "Helvetica", 8)
+    text_center_draw(pdf_canvas, 490, 670,
+                     "ADDITIONAL SHIPPER INFO.", "Helvetica", 8)
 
     pdf_canvas.line(40, 668, 570, 668)
 
