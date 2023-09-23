@@ -524,9 +524,12 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     output.add_page(first_page)
     # adding rest of page to output.
     for i in range(page_cnt):
+        existing_pdf = PdfReader(open("vics-stand.pdf", "rb"))
         packet.seek(0)
         canvas_page_pdf = PdfReader(packet)
-        output.add_page(canvas_page_pdf.pages[i + 1])
+        second_page = existing_pdf.pages[1]
+        second_page.merge_page(canvas_page_pdf.pages[i + 1])
+        output.add_page(second_page)
     output_stream = open(output_pdf_path, "wb")
     output.write(output_stream)
     output_stream.close()
