@@ -522,7 +522,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     output = PdfWriter()
     first_page = existing_pdf.pages[0]
     first_page.merge_page(canvas_page_pdf.pages[0])
-    # output.add_page(first_page)
+    output.add_page(first_page)
 
     # adding rest of page to output.
     for i in range(page_cnt):
@@ -822,6 +822,12 @@ def carrier_info_total(pdf_canvas, x, y, val, sub_pkg_qty_total, sub_weight_tota
     x = position_dict["CarrierInfo"]["page_one_column"]["Weight"]["x"]
     text_center_draw(pdf_canvas, x, y-18,
                      str(sub_weight_total), "Helvetica", 8)
+    pdf_canvas.setFillColor(lightslategray)
+    pdf_canvas.rect(75, y - 18, 35, 18, fill=1)
+    pdf_canvas.rect(145, y - 18, 37, 18, fill=1)
+    pdf_canvas.rect(235, y - 18, 335, 18, fill=1)
+
+    pdf_canvas.setFillColor(black)
 
 
 def carrier_info_header(pdf_canvas, y):
