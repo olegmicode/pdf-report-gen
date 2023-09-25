@@ -3,4 +3,5 @@
 venv/
 .venv
 *.pdf
+*.png
 !vics-stand.pdf
