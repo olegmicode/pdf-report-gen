@@ -2,7 +2,7 @@
 .vscode/
 venv/
 .venv
-dist/*.pdf
+dist/*
 *.png
 
 !vics-stand.pdf
