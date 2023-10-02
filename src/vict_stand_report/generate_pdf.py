@@ -418,7 +418,7 @@ pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty",
                "BOL", "CarrierDetails", "Footer"]
 
 
-def generate_pdf_from_json(json_file_path, output_pdf_path):
+def vict_stand_generate_pdf_from_json(json_file_path, output_pdf_path):
     with open(json_file_path) as file:
         data = json.load(file)
 
@@ -518,7 +518,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
     packet.seek(0)
     canvas_page_pdf = PdfReader(packet)
 
-    existing_pdf = PdfReader(open("vics-stand.pdf", "rb"))
+    existing_pdf = PdfReader(open("src/vict_stand_report/vics-stand.pdf", "rb"))
     output = PdfWriter()
     first_page = existing_pdf.pages[0]
     first_page.merge_page(canvas_page_pdf.pages[0])
@@ -526,7 +526,7 @@ def generate_pdf_from_json(json_file_path, output_pdf_path):
 
     # adding rest of page to output.
     for i in range(page_cnt):
-        existing_pdf = PdfReader(open("vics-stand.pdf", "rb"))
+        existing_pdf = PdfReader(open("src/vict_stand_report/vics-stand.pdf", "rb"))
         packet.seek(0)
         canvas_page_pdf = PdfReader(packet)
         second_page = existing_pdf.pages[1]
@@ -558,41 +558,41 @@ def draw_on_page_one(pdf_canvas, data, info):
                     # generate barcode
                     code128 = barcode.Code128(
                         str(data[pk][key]), writer=ImageWriter())
-                    filename = "Barcode"
+                    filename = "docs/Barcode"
                     code128.save(filename)
-                    image = Image.open("BarCode.png")
+                    image = Image.open("docs/BarCode.png")
                     # Remove the text portion by cropping the image
                     cropped_image = image.crop(
                         (0, 0, image.width, image.height - 90))
                     # Adjust the cropping dimensions as needed
                     # Save the modified image without the barcode number
-                    cropped_image.save("BarCode_noText.png")
+                    cropped_image.save("docs/BarCode_noText.png")
                     # draw the barcode image onto the canvas
                     barcode_width = 150
                     barcode_height = 32
                     x = position_dict[pk][key]["x"]
                     y = position_dict[pk][key]["y"]
-                    filename = "Barcode_noText.png"
+                    filename = "docs/Barcode_noText.png"
                     pdf_canvas.drawImage(
                         filename, x, y, width=barcode_width, height=barcode_height)
                 elif key == "PROBarCode":
                     code128 = barcode.get('code128', str(
                         data[pk][key]), writer=ImageWriter())
-                    filename = "PROBarCode"
+                    filename = "docs/PROBarCode"
                     code128.save(filename)
-                    image = Image.open("PROBarCode.png")
+                    image = Image.open("docs/PROBarCode.png")
                     # Remove the text portion by cropping the image
                     cropped_image = image.crop(
                         (0, 0, image.width, image.height - 90))
                     # Adjust the cropping dimensions as needed
                     # Save the modified image without the barcode number
-                    cropped_image.save("PROBarCode_noText.png")
+                    cropped_image.save("docs/PROBarCode_noText.png")
                     # draw the barcode image onto the canvas
                     barcode_width = 150
                     barcode_height = 32
                     image_x = position_dict[pk][key]["Image_x"]
                     image_y = position_dict[pk][key]["Image_y"]
-                    filename = "PROBarCode_noText.png"
+                    filename = "docs/PROBarCode_noText.png"
                     pdf_canvas.drawImage(
                         filename, image_x, image_y, width=barcode_width, height=barcode_height)
                 else:

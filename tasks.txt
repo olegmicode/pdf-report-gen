@@ -1,3 +1,0 @@
-- draw circle in pallet/slip in customer ordersection
-- calculate the number.
-- multiple page
