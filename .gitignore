@@ -3,6 +3,4 @@
 venv/
 .venv
 dist/*
-*.png
-
 !vics-stand.pdf
