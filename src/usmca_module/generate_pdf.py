@@ -8,7 +8,7 @@ import barcode
 from barcode.writer import ImageWriter
 from PIL import Image
 from reportlab.lib.colors import white, black, lightslategray
-from src.usmca_module.service import data_pos, translate_positon_to_pdf, text_center_draw
+from src.usmca_module.service import data_pos, translate_positon_to_pdf, text_center_draw, draw_multiline_string
 
 
 def usmca_generate_pdf_from_json(json_file_path, output_pdf_path, model_pdf_path):
@@ -87,12 +87,13 @@ def draw_on_page_one(pdf_canvas, data):
 
     text_center_draw(pdf_canvas, x, y, val, "Helvetica", 6, align="left")
 
-    # 3. ReferenceNumber
+    # ReferenceNumber
     val = data['ReferenceNumber']
     x, y, w, h = translate_positon_to_pdf(
         data_pos['ReferenceNumber']['x'], data_pos['ReferenceNumber']['y'])
 
     text_center_draw(pdf_canvas, x, y, val, "Helvetica", 6, align="left")
+    # 3 ~ 6. Certifier, Exporter, Producer, Importer
     for group_key in ['Certifier', 'Exporter', 'Producer', 'Importer']:
         # 4. Certifier
         group_data = data[group_key]
@@ -145,6 +146,27 @@ def draw_on_page_one(pdf_canvas, data):
             data_pos[group_key]['Email']['x'], data_pos[group_key]['Email']['y'])
 
         text_center_draw(pdf_canvas, x, y, val, "Helvetica", 6, align="left")
+
+    # 7 ~ 10 LineItems
+    line_items = data['LineItems']
+    g_x, g_y, g_w, g_h = translate_positon_to_pdf(
+        data_pos['LineItems']['x'], data_pos['LineItems']['y'], data_pos['LineItems']['w'], data_pos['LineItems']['h'])
+    item_y = g_y
+    for idx, item in enumerate(line_items):
+        for v_key in ['PartNumber', 'Description', 'HSTariffClarification', 'OriginCriterion', 'CountryOfOrigin']:
+            x, y, w, h = translate_positon_to_pdf(
+                data_pos['LineItems'][v_key]['x'], data_pos['LineItems'][v_key]['y'], data_pos['LineItems'][v_key]['w'], data_pos['LineItems'][v_key]['h'])
+            val = item[v_key]
+            align = "left" if v_key in ['Name', 'Description'] else "left"
+            if v_key == 'Description':
+                draw_multiline_string(pdf_canvas, val, x,
+                                      item_y, w, h)
+            else:
+                text_center_draw(pdf_canvas, x, item_y, val,
+                                 "Helvetica", 6, align=align)
+        item_y -= g_h
+        x, y, w, h = translate_positon_to_pdf(0, 0, 100, 0)
+        pdf_canvas.line(x, item_y, x + w, item_y)
 
     # 11. I CERTIFY THAT:
     group_value = data['Signatory']

@@ -1,4 +1,5 @@
 # Array
+from reportlab.pdfgen import canvas
 page_params = {
     "marginLeft": 15,  # margin left on real page's canvas
     "marginRight": 15,  # margin rigth on real page's canvas
@@ -160,25 +161,39 @@ data_pos = {
         }
     },
     "LineItems": {
+        "x": 6,
+        "y": 45,
+        "h": 3,
+        "w": 100,
         "PartNumber": {
-            "x": 0,
+            "x": 1.5,
             "y": 0,
+            "w": 0,
+            "h": 0,
         },
         "Description": {
-            "x": 0,
+            "x": 20.45,
             "y": 0,
+            "w": 30,
+            "h": 1.2,
         },
         "HSTariffClarification": {
-            "x": 0,
+            "x": 54.06,
             "y": 0,
+            "w": 0,
+            "h": 0,
         },
         "OriginCriterion": {
-            "x": 0,
+            "x": 72.55,
             "y": 0,
+            "w": 0,
+            "h": 0,
         },
         "CountryOfOrigin": {
-            "x": 0,
+            "x": 89.55,
             "y": 0,
+            "w": 0,
+            "h": 0,
         },
     },
     "Signatory": {
@@ -242,3 +257,22 @@ def translate_positon_to_pdf(x, y, w=0, h=0):
     r_h = h / max_height * content_height
 
     return [r_x, r_y, r_w, r_h]
+
+
+def draw_multiline_string(canvas, text, x, y, width, line_height):
+    words = text.split()
+    lines = []
+    current_line = words[0]
+
+    for word in words[1:]:
+        if canvas.stringWidth(current_line + ' ' + word) < width:
+            current_line += ' ' + word
+        else:
+            lines.append(current_line)
+            current_line = word
+
+    lines.append(current_line)
+
+    for line in lines:
+        canvas.drawString(x, y, line)
+        y -= line_height
