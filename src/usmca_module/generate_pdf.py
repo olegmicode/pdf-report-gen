@@ -418,7 +418,7 @@ pkey_types1 = ["ShipFrom", "ShipTo", "ThirdParty",
                "BOL", "CarrierDetails", "Footer"]
 
 
-def usmca_generate_pdf_from_json(json_file_path, output_pdf_path):
+def usmca_generate_pdf_from_json(json_file_path, output_pdf_path, model_pdf_path):
     with open(json_file_path) as file:
         data = json.load(file)
 
@@ -429,111 +429,18 @@ def usmca_generate_pdf_from_json(json_file_path, output_pdf_path):
     pdf_canvas = canvas.Canvas(packet, pagesize=letter)
     pdf_canvas.setFont("Helvetica", 8)
 
-    info = extract_additional_information(data)
-
-    # page 1
-    draw_on_page_one(pdf_canvas, data, info)
-
-    # items = max(len(data["OrderInfo"]["Items"]), len(data["CarrierInfo"]["Items"]))
-    items = len(data["OrderInfo"]["Items"])
-    # calculate the total page count
-    page_cnt = math.ceil((items-4)/34)
-
-    for i in range(page_cnt):
-        draw_new_page(pdf_canvas, draw_page, data)
-
-        pdf_canvas.setFont("Helvetica", 8)
-        x = position_dict["next_page_number"]["x"]
-        y = position_dict["next_page_number"]["y"]
-        text_center_draw(pdf_canvas, x, y, str(i+2), "Helvetica", 15, ddy)
-        endpoint = (i+1) * 34 + 4
-        firstpoint = i*34 + 3
-        # order sub total
-        sub_Pkgs_total = 0
-        sub_Order_weight_total = 0
-
-        for pk in data:
-            if pk == "OrderInfo":
-                idx = 0
-                radius = 7
-                customer_order_header(pdf_canvas, ddy)
-                # pdf_canvas.line(418, 679, 418, 668)
-                for row_data in data[pk]['Items']:
-                    if endpoint > idx > firstpoint:
-                        for key in ["OrderNo", "Pkgs", "Weight", "AddInfo", "PalletSlip"]:
-                            val = row_data[key]
-                            dx = position_dict["OrderInfo"]["page_one_column"][key]["dx"]
-                            dy = position_dict["OrderInfo"]["page_one_column"][key]["dy"]
-                            y = position_dict["OrderInfo"]["rows"][idx - i*34 + 5]
-                            pdf_canvas.setFont("Helvetica", 8)
-                            pdf_canvas.line(40, y + ddy, 570, y + ddy)
-
-                            draw_stick_customer(pdf_canvas, y, ddy)
-
-                            text_center_draw(
-                                pdf_canvas, 353, y, "Y", "Helvetica", 8, ddy)
-                            text_center_draw(
-                                pdf_canvas, 388, y, "N", "Helvetica", 8, ddy)
-
-                            # sub total
-                            if key == "Pkgs":
-                                sub_Pkgs_total += float(val)
-                                x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
-                                text_center_draw(
-                                    pdf_canvas, x - dx, y + dy, val, "Helvetica", 8, ddy)
-                            elif key == "Weight":
-                                sub_Order_weight_total += float(val)
-                                x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
-                                text_center_draw(
-                                    pdf_canvas, x - dx, y + dy, val, "Helvetica", 8, ddy)
-                            elif key == "PalletSlip":
-                                x = position_dict["OrderInfo"]["page_one_column"][key][val]
-                                pdf_canvas.circle(x, y + 8.5 + ddy, radius)
-                            else:
-                                x = position_dict["OrderInfo"]["page_one_column"][key]["x"]
-                                text_center_draw(
-                                    pdf_canvas, x - dx, y + dy, val, "Helvetica", 8, ddy)
-                    idx += 1
-
-        x = position_dict["OrderInfo"]["page_one_column"]["Pkgs"]["x"]
-
-        if (items - i * 34 - 4) > 34:
-            y = position_dict["OrderInfo"]["rows"][43]
-            draw_stick_customer(pdf_canvas, y, ddy)
-            custom_order_total(
-                pdf_canvas, x, y + ddy, sub_Pkgs_total, sub_Order_weight_total)
-        # last of customer order info.
-        elif (items - i * 34 - 4) < 34:
-            idx = (items - i*34 - 4) % 34
-            # print(idx)
-            y = position_dict["OrderInfo"]["rows"][idx+5+4]
-            draw_stick_customer(pdf_canvas, y, ddy)
-            custom_order_total(
-                pdf_canvas, x, y + ddy, sub_Pkgs_total, sub_Order_weight_total)
-            # carrier information items //total
-            carrier_information(data, pdf_canvas, idx+7, ddy)
-        pdf_canvas.showPage()
     # all canvas page save.
     pdf_canvas.save()
     packet.seek(0)
     canvas_page_pdf = PdfReader(packet)
 
     existing_pdf = PdfReader(
-        open("src/vict_stand_report/vics-stand.pdf", "rb"))
+        open(model_pdf_path, "rb"))
     output = PdfWriter()
     first_page = existing_pdf.pages[0]
     first_page.merge_page(canvas_page_pdf.pages[0])
     output.add_page(first_page)
 
-    # adding rest of page to output.
-    for i in range(page_cnt):
-        existing_pdf = PdfReader(
-            open("src/vict_stand_report/vics-stand.pdf", "rb"))
-        packet.seek(0)
-        canvas_page_pdf = PdfReader(packet)
-        second_page = existing_pdf.pages[1]
-        second_page.merge_page(canvas_page_pdf.pages[i + 1])
-        output.add_page(second_page)
     output_stream = open(output_pdf_path, "wb")
     output.write(output_stream)
     output_stream.close()

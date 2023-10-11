@@ -1,5 +1,11 @@
-Pillow==10.0.1
+distlib==0.3.7
+filelock==3.12.4
+numpy==1.26.0
+pandas==2.1.1
+platformdirs==3.10.0
 PyPDF2==3.0.1
-python-barcode==0.15.1
-reportlab==4.0.4
-typing_extensions==4.7.1
+python-dateutil==2.8.2
+pytz==2023.3.post1
+six==1.16.0
+typing_extensions==4.8.0
+tzdata==2023.3
