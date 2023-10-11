@@ -15,29 +15,29 @@
     "StateOrProvince": "AR",
     "PostalCode": "72601",
     "CountryCode": "US",
-    "TaxID": ""
+    "TaxID": "1234123412341234"
   },
   "Exporter": {
-    "CompanyName": "",
-    "Phone": "",
-    "Email": "",
-    "Address": "",
-    "City": "",
-    "StateOrProvince": "",
-    "PostalCode": "",
-    "CountryCode": "",
-    "TaxID": ""
+    "CompanyName": "asdfasdf INTEGRATED SOLUTIONS",
+    "Phone": "222333446456",
+    "Email": "test1@asdftesr.com",
+    "Address": "asdfasdf SUITE 320, 7777 STE 320",
+    "City": "Harrison asdfas",
+    "StateOrProvince": "AR",
+    "PostalCode": "72601",
+    "CountryCode": "US",
+    "TaxID": "1234123412341234"
   },
   "Producer": {
-    "CompanyName": "",
-    "Phone": "",
-    "Email": "",
-    "Address": "",
-    "City": "",
-    "StateOrProvince": "",
-    "PostalCode": "",
-    "CountryCode": "",
-    "TaxID": ""
+    "CompanyName": "asdfasdf",
+    "Phone": "asdfasdfasdf",
+    "Email": "asdfasdf@afaasdfasdf.com",
+    "Address": "asdfasdfasdf",
+    "City": "asdfasdfasdf",
+    "StateOrProvince": "ss",
+    "PostalCode": "123123",
+    "CountryCode": "US",
+    "TaxID": "1231234123421"
   },
   "Importer": {
     "CompanyName": "SPAM TEST ABBI",
@@ -60,11 +60,11 @@
     }
   ],
   "Signatory": {
-    "Name": "",
-    "CompanyName": "",
-    "Title": "",
-    "Email": "",
-    "Phone": "",
-    "Date": ""
+    "Name": "asdfasdf",
+    "CompanyName": "asdfasdf",
+    "Title": "asdfasdfasdf",
+    "Email": "asdfasdf@asdfasdf.com",
+    "Phone": "34523452",
+    "Date": "09/29/2023"
   }
 }
