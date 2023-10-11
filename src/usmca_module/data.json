@@ -1,0 +1,70 @@
+{
+  "BlanketPeriod": {
+    "DateFrom": "01/01/2023",
+    "DateTo": "31/12/2023"
+  },
+  "SingleShipment": true,
+  "ReferenceNumber": "0080096050",
+  "CertifyingParty": "EXPORTER",
+  "Certifier": {
+    "CompanyName": "ERP INTEGRATED SOLUTIONS",
+    "Phone": "222333446456",
+    "Email": "test1@tesr.com",
+    "Address": "1001 SUITE 320, 7777 STE 320",
+    "City": "Harrison",
+    "StateOrProvince": "AR",
+    "PostalCode": "72601",
+    "CountryCode": "US",
+    "TaxID": ""
+  },
+  "Exporter": {
+    "CompanyName": "",
+    "Phone": "",
+    "Email": "",
+    "Address": "",
+    "City": "",
+    "StateOrProvince": "",
+    "PostalCode": "",
+    "CountryCode": "",
+    "TaxID": ""
+  },
+  "Producer": {
+    "CompanyName": "",
+    "Phone": "",
+    "Email": "",
+    "Address": "",
+    "City": "",
+    "StateOrProvince": "",
+    "PostalCode": "",
+    "CountryCode": "",
+    "TaxID": ""
+  },
+  "Importer": {
+    "CompanyName": "SPAM TEST ABBI",
+    "Phone": "222333446456",
+    "Email": "email@email.com",
+    "Address": "9189 BLOOMFIELD AVEUNIT C",
+    "City": "Akron",
+    "StateOrProvince": "OH",
+    "PostalCode": "44333",
+    "CountryCode": "US",
+    "TaxID": ""
+  },
+  "LineItems": [
+    {
+      "PartNumber": "LES-120",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    }
+  ],
+  "Signatory": {
+    "Name": "",
+    "CompanyName": "",
+    "Title": "",
+    "Email": "",
+    "Phone": "",
+    "Date": ""
+  }
+}
