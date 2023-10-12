@@ -149,24 +149,30 @@ def draw_on_page_one(pdf_canvas, data):
 
     # 7 ~ 10 LineItems
     line_items = data['LineItems']
-    g_x, g_y, g_w, g_h = translate_positon_to_pdf(
-        data_pos['LineItems']['x'], data_pos['LineItems']['y'], data_pos['LineItems']['w'], data_pos['LineItems']['h'])
+    __x, g_y, __h, g_h = translate_positon_to_pdf(
+        data_pos['LineItems']['x'], data_pos['LineItems']['y'], h=data_pos['LineItems']['h'])
+    __x, __y, __h, g_dh = translate_positon_to_pdf(
+        data_pos['LineItems']['x'], data_pos['LineItems']['y'], h=data_pos['LineItems']['dh'])
+
     item_y = g_y
     for idx, item in enumerate(line_items):
-        for v_key in ['PartNumber', 'Description', 'HSTariffClarification', 'OriginCriterion', 'CountryOfOrigin']:
-            x, y, w, h = translate_positon_to_pdf(
-                data_pos['LineItems'][v_key]['x'], data_pos['LineItems'][v_key]['y'], data_pos['LineItems'][v_key]['w'], data_pos['LineItems'][v_key]['h'])
-            val = item[v_key]
-            align = "left" if v_key in ['Name', 'Description'] else "left"
-            if v_key == 'Description':
-                draw_multiline_string(pdf_canvas, val, x,
-                                      item_y, w, h)
-            else:
-                text_center_draw(pdf_canvas, x, item_y, val,
-                                 "Helvetica", 6, align=align)
-        item_y -= g_h
-        x, y, w, h = translate_positon_to_pdf(0, 0, 100, 0)
-        pdf_canvas.line(x, item_y, x + w, item_y)
+        if idx < 11:
+            for v_key in ['PartNumber', 'Description', 'HSTariffClarification', 'OriginCriterion', 'CountryOfOrigin']:
+                x, y, w, h = translate_positon_to_pdf(
+                    data_pos['LineItems'][v_key]['x'], data_pos['LineItems'][v_key]['y'], data_pos['LineItems'][v_key]['w'], data_pos['LineItems'][v_key]['h'])
+                val = item[v_key]
+                align = "left" if v_key in ['Name', 'Description'] else "left"
+                if v_key == 'Description':
+                    draw_multiline_string(pdf_canvas, val, x,
+                                          item_y, w, h)
+                else:
+                    text_center_draw(pdf_canvas, x, item_y, val,
+                                     "Helvetica", 6, align=align)
+            x, y, w, h = translate_positon_to_pdf(0, 0, 100, 0)
+            thickness = data_pos['LineItems']['thickness']
+            pdf_canvas.setLineWidth(thickness)
+            pdf_canvas.line(x, item_y - g_dh, x + w, item_y - g_dh)
+            item_y -= g_h
 
     # 11. I CERTIFY THAT:
     group_value = data['Signatory']
