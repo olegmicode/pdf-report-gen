@@ -35,10 +35,16 @@ data_pos = {
         "h": 0
     },
     "CertifyingParty": {
-        "x": 0,
-        "y": 0,
-        "w": 0,
-        "h": 0
+        "exporter": {
+            "x": 10.2,
+            "y": 21.65,
+            "dx": 2,
+        },
+        "producer": {
+            "x": 21.2,
+            "y": 21.65,
+            "dx": 2,
+        }
     },
     "Certifier": {
         "CompanyName": {
@@ -166,6 +172,45 @@ data_pos = {
         "h": 3.1,
         "dh": 1.75,
         "w": 100,
+        "thickness": 0.5,
+        "PartNumber": {
+            "x": 1.5,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+        },
+        "Description": {
+            "x": 20.45,
+            "y": 0,
+            "w": 30,
+            "h": 1.2,
+        },
+        "HSTariffClarification": {
+            "x": 54.06,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+        },
+        "OriginCriterion": {
+            "x": 72.55,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+        },
+        "CountryOfOrigin": {
+            "x": 89.55,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+        },
+    },
+    "LineItems-2": {
+        "x": 6,
+        "y": 4.4,
+        "h": 3.14,
+        "dh": 1.65,
+        "w": 100,
+        "thickness": 0.5,
         "PartNumber": {
             "x": 1.5,
             "y": 0,
@@ -227,7 +272,11 @@ data_pos = {
 }
 
 
-def text_center_draw(canvas, x, y, text, font, size, dy=0, align="center"):
+first_page_count = 11
+page_item_count = 31
+
+
+def text_draw_on_canvas(canvas, x, y, text, font, size, dy=0, align="center"):
     if align == "center":
         width = canvas.stringWidth(text=text, fontName=font, fontSize=size)
         canvas.setFont(font, size)

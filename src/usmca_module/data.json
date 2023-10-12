@@ -5,7 +5,7 @@
   },
   "SingleShipment": true,
   "ReferenceNumber": "0080096050",
-  "CertifyingParty": "EXPORTER",
+  "CertifyingParty": "producer",
   "Certifier": {
     "CompanyName": "ERP INTEGRATED SOLUTIONS",
     "Phone": "222333446456",
@@ -52,6 +52,146 @@
   },
   "LineItems": [
     {
+      "PartNumber": "LES-10",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-11",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-12",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-13",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-14",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-15",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-16",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-17",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-18",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-19",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-110",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-111",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-112",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-113",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-114",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-115",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-116",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-117",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-118",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-119",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
       "PartNumber": "LES-120",
       "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
       "HSTariffClarification": "8423810030",
@@ -62,7 +202,7 @@
       "PartNumber": "LES-121",
       "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
       "HSTariffClarification": "8423810030",
-      "OriginCriterion": "B",
+      "OriginCriterion": "A",
       "CountryOfOrigin": "US"
     },
     {
@@ -90,7 +230,7 @@
       "PartNumber": "LES-125",
       "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
       "HSTariffClarification": "8423810030",
-      "OriginCriterion": "A",
+      "OriginCriterion": "B",
       "CountryOfOrigin": "US"
     },
     {
@@ -130,6 +270,538 @@
     },
     {
       "PartNumber": "LES-131",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-132",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-133",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-134",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-135",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-136",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-137",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-138",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-139",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-140",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-141",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-142",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-143",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-144",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-145",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-146",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-147",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-148",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-149",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-150",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-151",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-152",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-153",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-154",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-155",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-156",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-157",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-158",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-159",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-160",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-161",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-162",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-163",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-164",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-165",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-166",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-167",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-168",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-169",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-170",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-171",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-172",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-173",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-174",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-175",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-176",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-177",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-178",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-179",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-180",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-181",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-182",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-183",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-184",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-185",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-186",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-187",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-188",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-189",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-190",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-191",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-192",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-193",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-194",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-195",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-196",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-197",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "B",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-198",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-199",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1100",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1101",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1102",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1103",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1104",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1105",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1106",
+      "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
+      "HSTariffClarification": "8423810030",
+      "OriginCriterion": "A",
+      "CountryOfOrigin": "US"
+    },
+    {
+      "PartNumber": "LES-1107",
       "Description": "DIGITAL ELECTRONIC TYPE RETAIL SCALES COMPUTING, HAVING A MAXIMUN",
       "HSTariffClarification": "8423810030",
       "OriginCriterion": "A",
