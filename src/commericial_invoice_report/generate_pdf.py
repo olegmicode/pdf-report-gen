@@ -8,6 +8,7 @@ import barcode
 from barcode.writer import ImageWriter
 from PIL import Image
 from reportlab.lib.colors import white, black, lightslategray
+import pandas as pd
 
 # Array
 draw_page = {
@@ -94,7 +95,7 @@ position_dict = {
         "incoterms": {
             "x": 323,
             "y": 586
-        }, 
+        },
         "bill_of_lading": {
             "x": 454,
             "y": 632
@@ -151,8 +152,8 @@ position_dict = {
             "y": 574,
             "related": 52,
             "non_related": 139
-            },            
         },
+    },
     "consignee": {
         "tax_id": {
             "x": 85,
@@ -195,9 +196,9 @@ position_dict = {
             "y": 530
         },
     },
-    
-    
-    
+
+
+
     "sold_to": {
 
         "same_as_consignee": {
@@ -246,7 +247,7 @@ position_dict = {
         },
 
     },
-    
+
     "broker": {
 
         "name": {
@@ -279,11 +280,11 @@ position_dict = {
                 "y": 423
             },
         },
-        
-        
+
+
 
     },
-    
+
     "items": {
         "item_field": {
             "num_packages": {
@@ -329,7 +330,7 @@ position_dict = {
             251,
             235.5,
             214,
-            # 
+            #
             554,
             538.5,
             523.0,
@@ -363,21 +364,21 @@ position_dict = {
             89.0,
             73.5,
             58.0,
-           
+
         ]
     },
 
     "special_instructions": {
         "x": 53,
         "y": 160
-    }, 
+    },
 
     "originator": {
         "x": 77,
         "y": 75
     },
 
-    
+
     "totals": {
         "subTotal": {
             "x": 560,
@@ -408,8 +409,8 @@ position_dict = {
             "y": 87
         },
         "currency_code": {
-            "x": 560,  
-            "y": 70 
+            "x": 560,
+            "y": 70
         },
         "next_sub_total": {
             "x": 560,
@@ -419,13 +420,16 @@ position_dict = {
 }
 ddy = -20
 
+
 def text_center_draw(canvas, x, y, text, font, size, dy=0):
     width = canvas.stringWidth(text=str(text), fontName=font, fontSize=size)
     canvas.setFont(font, size)
     canvas.drawString(x-(width/2), y + 5 + dy, str(text))
 
+
 pkey_types1 = ["shipment_details", "exporter", "consignee",
                "sold_to", "broker", "special_instructions", "originator", "totals", "items"]
+
 
 def commericial_invoice_generate_pdf_from_json(json_file_path, output_pdf_path):
     with open(json_file_path) as file:
@@ -439,16 +443,17 @@ def commericial_invoice_generate_pdf_from_json(json_file_path, output_pdf_path):
     pdf_canvas.setFont("Helvetica", 8)
 
     items = len(data["items"])
-    page_cnt = math.ceil((items)/12)# + #math.ceil((items-12)/32)
+    page_cnt = math.ceil((items)/12)  # + #math.ceil((items-12)/32)
     # page 1
-    draw_on_page_one(pdf_canvas, data, page_cnt)#info
- 
+    draw_on_page_one(pdf_canvas, data, page_cnt)  # info
+
     pdf_canvas.save()
     packet.seek(0)
     canvas_page_pdf = PdfReader(packet)
     output = PdfWriter()
     for i in range(page_cnt):
-        existing_pdf = PdfReader(open("src/commericial_invoice_report/Commercial_Invoice.pdf", "rb"))
+        existing_pdf = PdfReader(
+            open("src/commericial_invoice_report/Commercial_Invoice.pdf", "rb"))
         packet.seek(0)
         canvas_page_pdf = PdfReader(packet)
         existing_page = existing_pdf.pages[i]
@@ -458,7 +463,8 @@ def commericial_invoice_generate_pdf_from_json(json_file_path, output_pdf_path):
     output.write(output_stream)
     output_stream.close()
 
-def draw_on_page_one(pdf_canvas, data, page_cnt):#, info):
+
+def draw_on_page_one(pdf_canvas, data, page_cnt):  # , info):
     for pk in data:
         if pk in pkey_types1:
             if pk == "special_instructions":
@@ -477,31 +483,35 @@ def draw_on_page_one(pdf_canvas, data, page_cnt):#, info):
             elif pk == "totals":
                 pass
             else:
-                    for key in data[pk]:                
-                        if key == "parties_to_transaction":
-                            for inner_key in data[pk][key]:
-                                x = position_dict[pk][key][inner_key]
-                                y = position_dict[pk][key]["y"]
-                                val = data[pk][key][inner_key]
-                                text_center_draw(pdf_canvas, x, y-5, val, "Helvetica", 6)
-                        elif key == "duties_taxes_payable_by":
-                            for inner_key in data[pk][key]:
-                                x = position_dict[pk][key][inner_key]["x"]
-                                y = position_dict[pk][key][inner_key]["y"]
-                                val = data[pk][key][inner_key]
-                                text_center_draw(pdf_canvas, x, y-5, val, "Helvetica", 6)
-                        else:
-                            x = position_dict[pk][key]["x"]
+                for key in data[pk]:
+                    if key == "parties_to_transaction":
+                        for inner_key in data[pk][key]:
+                            x = position_dict[pk][key][inner_key]
                             y = position_dict[pk][key]["y"]
-                            text_center_draw(pdf_canvas, x, y-5, str(data[pk][key]), "Helvetica", 6)
-                       
+                            val = data[pk][key][inner_key]
+                            text_center_draw(
+                                pdf_canvas, x, y-5, val, "Helvetica", 6)
+                    elif key == "duties_taxes_payable_by":
+                        for inner_key in data[pk][key]:
+                            x = position_dict[pk][key][inner_key]["x"]
+                            y = position_dict[pk][key][inner_key]["y"]
+                            val = data[pk][key][inner_key]
+                            text_center_draw(
+                                pdf_canvas, x, y-5, val, "Helvetica", 6)
+                    else:
+                        x = position_dict[pk][key]["x"]
+                        y = position_dict[pk][key]["y"]
+                        text_center_draw(pdf_canvas, x, y-5,
+                                         str(data[pk][key]), "Helvetica", 6)
+
+
 def draw_items_list(pdf_canvas, data, page_cnt):
     idx = 0
     item_cnt = len(data["items"])
     # print(page_cnt)
     # Invoice_total = 0
     for i in range(page_cnt):
-        #first page
+        # first page
         sub_total = 0
         # print("i", i)
         if i == 0:
@@ -509,10 +519,10 @@ def draw_items_list(pdf_canvas, data, page_cnt):
             endPnt = 12
         elif (page_cnt-1) > i > 0:
             firstPnt = 12 + (i-1)*32
-            endPnt =  i*32 + 12
-        elif page_cnt -1  == i:
+            endPnt = i*32 + 12
+        elif page_cnt - 1 == i:
             firstPnt = 12 + (i-1)*32
-            endPnt =  firstPnt + (item_cnt-12)%32
+            endPnt = firstPnt + (item_cnt-12) % 32
             # print(idx)
         for item in data["items"]:
             if endPnt > idx >= firstPnt:
@@ -524,47 +534,151 @@ def draw_items_list(pdf_canvas, data, page_cnt):
                         x1 = position_dict["items"]["item_field"][key]["x1"]
                         x2 = position_dict["items"]["item_field"][key]["x2"]
                         y = position_dict["items"]["rows"][idx]
-                        text_center_draw(pdf_canvas, x1, y-5, val[0], "Helvetica", 6)
-                    
+                        text_center_draw(pdf_canvas, x1, y-5,
+                                         val[0], "Helvetica", 6)
+
                     else:
                         if key == "value":
                             sub_total += float(item[key])
-                        
+
                         x = position_dict["items"]["item_field"][key]["x"]
                         y = position_dict["items"]["rows"][idx]
                         val = data["items"][idx][key]
                         # print("val", key , val)
-                        text_center_draw(pdf_canvas, x, y-5, val, "Helvetica", 6)
+                        text_center_draw(pdf_canvas, x, y-5,
+                                         val, "Helvetica", 6)
                         pdf_canvas.line(35, y - 5, 575, y - 5)
-                idx += 1 
-                #total calculation
+                idx += 1
+                # total calculation
             else:
                 break
         if i == 0:
             first_page_total_Cal(pdf_canvas, data, sub_total)
         else:
-            next_page_total_Cal(pdf_canvas, data, sub_total, i)    
+            next_page_total_Cal(pdf_canvas, data, sub_total, i)
         pdf_canvas.showPage()
 
 
+# def first_page_total_Cal(pdf_canvas, data, sub_total):
+#     Total_Pkgs = len(data["items"])
+#     Total_No_unit = 0
+#     Total_netWeight = 0
+#     invoice_total = 0
+#     # draw page_number
+#     text_center_draw(pdf_canvas, 560, 703, "1", "Helvetica", 7)
+
+#     for item in data["items"]:
+#         for key in item:
+#             if key == "quantity":
+#                 strVal = item[key]
+#                 val = strVal.split(" ")
+#                 Total_No_unit += float(val[0])
+#             elif key == "net_weight":
+#                 Total_netWeight += float(item["net_weight"])
+#             elif key == "value":
+#                 invoice_total += float(item["value"])
+#     y = position_dict["first_page_total"]["y"]
+#     # N of Pkgs
+#     x = position_dict["items"]["item_field"]["num_packages"]["x"]
+#     text_center_draw(pdf_canvas, x, y, Total_Pkgs, "Helvetica", 6)
+#     # quantity
+#     x = position_dict["items"]["item_field"]["quantity"]["x1"]
+#     text_center_draw(pdf_canvas, x, y, Total_No_unit, "Helvetica", 6)
+
+#     # Net weight
+#     x = position_dict["items"]["item_field"]["net_weight"]["x"]
+#     text_center_draw(pdf_canvas, x + 10, y, str(Total_netWeight) + "  LBS", "Helvetica", 6)
+#     # sub total
+#     x = position_dict["totals"]["subTotal"]["x"]
+#     y = position_dict["totals"]["subTotal"]["y"]
+#     text_center_draw(pdf_canvas, x, y, sub_total, "Helvetica", 6)
+#     # invoice total
+#     x = position_dict["totals"]["Invoice_Total"]["x"]
+#     y = position_dict["totals"]["Invoice_Total"]["y"]
+#     text_center_draw(pdf_canvas, x, y, invoice_total, "Helvetica", 6)
+
+#     for pk in data:
+#         if pk == "totals":
+#             for key in data[pk]:
+#                 x = position_dict["totals"][key]["x"]
+#                 y = position_dict["totals"][key]["y"]
+#                 text_center_draw(pdf_canvas, x, y, data[pk][key], "Helvetica", 6)
+
+
+def next_page_total_Cal(pdf_canvas, data, sub_total, i):
+    # page_number
+    text_center_draw(pdf_canvas, 520, 711, i+1, "Helvetica", 7)
+    text_center_draw(pdf_canvas, 560, 711, i+1, "Helvetica", 7)
+    # exporter
+    for pk in data:
+        if pk == "exporter":
+            for key in data[pk]:
+                if key == "company_name" or key == "address1" or key == "address2" or key == "city" or key == "state" or key == "postal_code" or key == "country":
+                    x = position_dict[pk][key]["x"]
+                    y = position_dict[pk][key]["y"]
+                    # The above code is using the `print` function to output a blank line.
+                    # print(pk, key)
+                    # print(str(data[pk][key]), key)
+                    text_center_draw(pdf_canvas, x, y+55,
+                                     str(data[pk][key]), "Helvetica", 6)
+        elif pk == "consignee":
+            for key in data[pk]:
+                if key == "company_name" or key == "address1" or key == "address2" or key == "city" or key == "state" or key == "postal_code" or key == "country":
+                    x = position_dict[pk][key]["x"]
+                    y = position_dict[pk][key]["y"]
+                    # The above code is using the `print` function to output a blank line.
+                    # print(pk, key)
+                    # print(str(data[pk][key]), key)
+                    text_center_draw(pdf_canvas, x, y+125,
+                                     str(data[pk][key]), "Helvetica", 6)
+        elif pk == "sold_to":
+            for key in data[pk]:
+                if key == "company_name" or key == "address1" or key == "address2" or key == "city" or key == "state" or key == "postal_code" or key == "country":
+                    x = position_dict[pk][key]["x"]
+                    y = position_dict[pk][key]["y"]
+                    # The above code is using the `print` function to output a blank line.
+                    # print(pk, key)
+                    # print(str(data[pk][key]), key)
+                    text_center_draw(pdf_canvas, x, y+125,
+                                     str(data[pk][key]), "Helvetica", 6)
+        elif pk == "shipment_details":
+            for key in data[pk]:
+                if key == "track_no" or key == "invoice_number" or key == "po_number" or key == "payment_terms" or key == "bill_of_lading":
+                    x = position_dict[pk][key]["x"]
+                    y = position_dict[pk][key]["y"]
+                    # The above code is using the `print` function to output a blank line.
+                    # print(pk, key)
+                    # print(str(data[pk][key]), key)
+                    text_center_draw(pdf_canvas, x, y+23,
+                                     str(data[pk][key]), "Helvetica", 6)
+    # sub total
+    x = position_dict["totals"]["next_sub_total"]["x"]
+    y = position_dict["totals"]["next_sub_total"]["y"]
+    text_center_draw(pdf_canvas, x, y, str(sub_total), "Helvetica", 6)
+
+
 def first_page_total_Cal(pdf_canvas, data, sub_total):
-    Total_Pkgs = len(data["items"])
+    Total_Pkgs = 0  # len(data["items"])
     Total_No_unit = 0
     Total_netWeight = 0
     invoice_total = 0
     # draw page_number
     text_center_draw(pdf_canvas, 560, 703, "1", "Helvetica", 7)
 
-    for item in data["items"]:
-        for key in item:
-            if key == "quantity":
-                strVal = item[key]
-                val = strVal.split(" ")
-                Total_No_unit += float(val[0])
-            elif key == "net_weight":
-                Total_netWeight += float(item["net_weight"])
-            elif key == "value":
-                invoice_total += float(item["value"])
+    df = pd.DataFrame(data["items"])
+    df[['quantity', 'uom']] = df["quantity"].str.split(expand=True)
+    df['quantity'] = pd.to_numeric(df['quantity'])
+    Total_No_unit = df["quantity"].sum()
+
+    df['num_packages'] = pd.to_numeric(df['num_packages'])
+    Total_Pkgs = df["num_packages"].sum()
+
+    df['net_weight'] = pd.to_numeric(df['net_weight'])
+    Total_netWeight = df["net_weight"].sum()
+
+    df['value'] = pd.to_numeric(df['value'])
+    invoice_total = df["value"].sum()
+
     y = position_dict["first_page_total"]["y"]
     # N of Pkgs
     x = position_dict["items"]["item_field"]["num_packages"]["x"]
@@ -572,10 +686,11 @@ def first_page_total_Cal(pdf_canvas, data, sub_total):
     # quantity
     x = position_dict["items"]["item_field"]["quantity"]["x1"]
     text_center_draw(pdf_canvas, x, y, Total_No_unit, "Helvetica", 6)
-    
+
     # Net weight
     x = position_dict["items"]["item_field"]["net_weight"]["x"]
-    text_center_draw(pdf_canvas, x + 10, y, str(Total_netWeight) + "  LBS", "Helvetica", 6)
+    text_center_draw(pdf_canvas, x + 10, y,
+                     str(Total_netWeight) + " LBS", "Helvetica", 6)
     # sub total
     x = position_dict["totals"]["subTotal"]["x"]
     y = position_dict["totals"]["subTotal"]["y"]
@@ -590,54 +705,5 @@ def first_page_total_Cal(pdf_canvas, data, sub_total):
             for key in data[pk]:
                 x = position_dict["totals"][key]["x"]
                 y = position_dict["totals"][key]["y"]
-                text_center_draw(pdf_canvas, x, y, data[pk][key], "Helvetica", 6)
-                
-
-def next_page_total_Cal(pdf_canvas, data, sub_total, i):
-    #page_number
-    text_center_draw(pdf_canvas, 520, 711, i+1, "Helvetica", 7)
-    text_center_draw(pdf_canvas, 560, 711, i+1, "Helvetica", 7)
-    # exporter
-    for pk in data:
-        if pk == "exporter":
-            for key in data[pk]:
-                if key == "company_name" or key == "address1" or key == "address2" or key == "city" or key == "state" or key == "postal_code" or key == "country":
-                    x = position_dict[pk][key]["x"]
-                    y = position_dict[pk][key]["y"]
-                    # The above code is using the `print` function to output a blank line.
-                    # print(pk, key)
-                    # print(str(data[pk][key]), key)
-                    text_center_draw(pdf_canvas, x, y+55, str(data[pk][key]), "Helvetica", 6)
-        elif pk == "consignee":
-            for key in data[pk]:
-                if key == "company_name" or key == "address1" or key == "address2" or key == "city" or key == "state" or key == "postal_code" or key == "country":
-                    x = position_dict[pk][key]["x"]
-                    y = position_dict[pk][key]["y"]
-                    # The above code is using the `print` function to output a blank line.
-                    # print(pk, key)
-                    # print(str(data[pk][key]), key)
-                    text_center_draw(pdf_canvas, x, y+125, str(data[pk][key]), "Helvetica", 6)
-        elif pk == "sold_to":
-            for key in data[pk]:
-                if key == "company_name" or key == "address1" or key == "address2" or key == "city" or key == "state" or key == "postal_code" or key == "country":
-                    x = position_dict[pk][key]["x"]
-                    y = position_dict[pk][key]["y"]
-                    # The above code is using the `print` function to output a blank line.
-                    # print(pk, key)
-                    # print(str(data[pk][key]), key)
-                    text_center_draw(pdf_canvas, x, y+125, str(data[pk][key]), "Helvetica", 6)
-        elif pk == "shipment_details":
-            for key in data[pk]:
-                if key == "track_no" or key == "invoice_number" or key == "po_number" or key == "payment_terms" or key == "bill_of_lading" :
-                    x = position_dict[pk][key]["x"]
-                    y = position_dict[pk][key]["y"]
-                    # The above code is using the `print` function to output a blank line.
-                    # print(pk, key)
-                    # print(str(data[pk][key]), key)
-                    text_center_draw(pdf_canvas, x, y+23, str(data[pk][key]), "Helvetica", 6)
-    # sub total
-    x = position_dict["totals"]["next_sub_total"]["x"]
-    y = position_dict["totals"]["next_sub_total"]["y"]
-    text_center_draw(pdf_canvas, x, y, str(sub_total), "Helvetica", 6)
-    
-
+                text_center_draw(pdf_canvas, x, y,
+                                 data[pk][key], "Helvetica", 6)
