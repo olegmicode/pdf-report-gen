@@ -1,161 +1,151 @@
 # Array
 from reportlab.pdfgen import canvas
 page_params = {
-    "marginLeft": 15,  # margin left on real page's canvas
-    "marginRight": 15,  # margin rigth on real page's canvas
-    "marginTop": 18,  # margin top on real page's canvas
-    "marginBottom": 12,  # margin bottom on real page's canvas
-    "paperWidth": 574,  # width for real page's canvas
-    "paperHeight": 640,  # height for real page's canvas
+    "marginLeft": 45,  # margin left on real page's canvas
+    "marginRight": 5,  # margin rigth on real page's canvas
+    "marginTop": -126,  # margin top on real page's canvas
+    "marginBottom": 50,  # margin bottom on real page's canvas
+    "paperWidth": 560,  # width for real page's canvas
+    "paperHeight": 600,  # height for real page's canvas
     "width": 100,  # virtual width for draw
     "height": 100,  # virtual height for draw
 }
 
 data_pos = {
-  "AirWaybillNumber": {
-    "x": 0,
-    "y": 0
-  },
-  "ShipperReferenceNumber": {
-    "x": 0,
-    "y": 0
-  },
-  "ShipFrom": {
-    "CompanyName": {
-        "x": 0,
-        "y": 0
+    "AirWaybillNumber": {
+        "x": 65,
+        "y": 1.5
     },
-    "Address": {
-        "x": 0,
-        "y": 0
+    "ShipperReferenceNumber": {
+        "x": 78,
+        "y": 6
     },
-    "City": {
-        "x": 0,
-        "y": 0
+    "Pages": {
+        "x": 56.25,
+        "y": 4.1,
+        "w": 3
     },
-    "StateOrProvince": {
-        "x": 0,
-        "y": 0
+    "ShipFrom": {
+        "CompanyName": {
+            "x": 1,
+            "y": 3
+        },
+        "Address": {
+            "x": 1,
+            "y": 5
+        },
+        "City": {
+            "x": 1,
+            "y": 6.5
+        },
+        "PostalCode": {
+            "x": 1,
+            "y": 8
+        }
     },
-    "PostalCode": {
-        "x": 0,
-        "y": 0
-    },
-    "CountryCode": {
-        "x": 0,
-        "y": 0
-    }
-  },
-  "ShipTo": {
-    "Name": {
-        "x": 0,
-        "y": 0
-    },
-    "Address": {
-        "x": 0,
-        "y": 0
-    },
-    "City": {
-        "x": 0,
-        "y": 0
-    },
-    "StateOrProvince": {
-        "x": 0,
-        "y": 0
-    },
-    "PostalCode": {
-        "x": 0,
-        "y": 0
-    },
-    "CountryCode": {
-        "x": 0,
-        "y": 0
-    }
-  },
-  "TransportDetails": {
-    "AirService": {
-        "x": 0,
-        "y": 0
-    },
-    "AirportOfDeparture": {
-        "x": 0,
-        "y": 0
-    },
-    "AirportOfDestination": {
-        "x": 0,
-        "y": 0
-    }
-  },
-  "ShipmentType": {
-    "RadioActive": {
-        "x": 0,
-        "y": 0
-    }
-  },
-  "DangerousGoods": [
-    {
-      "ActualQuantity": {
-        "x": 0,
-        "y": 0
-      },
-      "PackingType": {
-        "x": 0,
-        "y": 0
-      },
-      "UNNumber": {
-        "x": 0,
-        "y": 0
-      },
-      "ProperShippingName": {
-        "x": 0,
-        "y": 0
-      },
-      "TechnicalName": {
-        "x": 0,
-        "y": 0
-      },
-      "HazmatClass": {
-        "x": 0,
-        "y": 0
-      },
-      "PackingGroup": {
-        "x": 0,
-        "y": 0
-      },
-      "ActualUOM": {
-        "x": 0,
-        "y": 0
-      },
-      "PackingInstructions": {
-        "x": 0,
-        "y": 0
-      },
-      "ShipType": {
-        "x": 0,
-        "y": 0
-      }
-    }
-  ],
-  "AdditionalHandlingInformation": {
-    "EmergencyContact": {
-        "x": 0,
-        "y": 0
-    },
-    "EmergengyContactNo": {
-        "x": 0,
-        "y": 0
-    },
-    "ShipperName": {
-        "x": 0,
-        "y": 0
-    },
-    "ShipmentDate": {
-        "x": 0,
-        "y": 0
-    }
-  }
-}
+    "ShipTo": {
+        "Name": {
+            "x": 1,
+            "y": 12
+        },
+        "Address": {
+            "x": 1,
+            "y": 14
+        },
+        "City": {
+            "x": 1,
+            "y": 15.5
+        },
 
+        "PostalCode": {
+            "x": 1,
+            "y": 17
+        },
+
+    },
+    "TransportDetails": {
+        "AirService": {
+            "x": 0,
+            "y": 0
+        },
+        "AirportOfDeparture": {
+            "x": 0,
+            "y": 0
+        },
+        "AirportOfDestination": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "ShipmentType": {
+        "RadioActive": {
+            "x": 0,
+            "y": 0
+        }
+    },
+    "DangerousGoods": [
+        {
+            "ActualQuantity": {
+                "x": 0,
+                "y": 0
+            },
+            "PackingType": {
+                "x": 0,
+                "y": 0
+            },
+            "UNNumber": {
+                "x": 0,
+                "y": 0
+            },
+            "ProperShippingName": {
+                "x": 0,
+                "y": 0
+            },
+            "TechnicalName": {
+                "x": 0,
+                "y": 0
+            },
+            "HazmatClass": {
+                "x": 0,
+                "y": 0
+            },
+            "PackingGroup": {
+                "x": 0,
+                "y": 0
+            },
+            "ActualUOM": {
+                "x": 0,
+                "y": 0
+            },
+            "PackingInstructions": {
+                "x": 0,
+                "y": 0
+            },
+            "ShipType": {
+                "x": 0,
+                "y": 0
+            }
+        }
+    ],
+    "AdditionalHandlingInformation": {
+        "EmergencyContact": {
+            "x": 0,
+            "y": 0
+        },
+        "EmergengyContactNo": {
+            "x": 0,
+            "y": 0
+        },
+        "ShipperName": {
+            "x": 0,
+            "y": 0
+        },
+        "ShipmentDate": {
+            "x": 0,
+            "y": 0
+        }
+    }
+}
 
 
 first_page_count = 11

@@ -1,14 +1,11 @@
 from PyPDF2 import PdfWriter, PdfReader
 import io
 import json
-import math
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-import barcode
 from barcode.writer import ImageWriter
-from PIL import Image
 from reportlab.lib.colors import white, black, lightslategray
-from src.usmca_module.service import data_pos, first_page_count, page_item_count, translate_positon_to_pdf, text_draw_on_canvas, draw_multiline_string
+from src.iata_module.service import data_pos, first_page_count, page_item_count, translate_positon_to_pdf, text_draw_on_canvas, draw_multiline_string
 
 
 def iata_generate_pdf_from_json(json_file_path, output_pdf_path, model_pdf_path):
@@ -20,7 +17,7 @@ def iata_generate_pdf_from_json(json_file_path, output_pdf_path, model_pdf_path)
     packet = io.BytesIO()
 
     pdf_canvas = canvas.Canvas(packet, pagesize=letter)
-    pdf_canvas.setFont("Helvetica", 8)
+    # draw_boundary_on_page(pdf_canvas, data)
 
     draw_on_page_one(pdf_canvas, data)
 
@@ -64,25 +61,83 @@ def draw_boundary_on_page(pdf_canvas, data):
 
     x, y, w, h = translate_positon_to_pdf(100, 0, 0, 100)
     pdf_canvas.line(x, y - h, x+w, y)
-    # single shipment
 
 
 def draw_on_page_one(pdf_canvas, data):
     # 1. Shipper
-    # DateFrom
     x, y, _w, _h = translate_positon_to_pdf(
-        data_pos['BlanketPeriod']['DateFrom']['x'], data_pos['BlanketPeriod']['DateFrom']['y'])
+        data_pos['ShipFrom']['CompanyName']['x'], data_pos['ShipFrom']['CompanyName']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['BlanketPeriod']['DateFrom'], "Helvetica", 6, align="left")
-    # 2. Consignee
-    # DateFrom
+                        data['ShipFrom']['CompanyName'], "Helvetica", 7, align="left")
+
     x, y, _w, _h = translate_positon_to_pdf(
-        data_pos['BlanketPeriod']['DateFrom']['x'], data_pos['BlanketPeriod']['DateFrom']['y'])
+        data_pos['ShipFrom']['Address']['x'], data_pos['ShipFrom']['Address']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['BlanketPeriod']['DateFrom'], "Helvetica", 6, align="left")
-   
+                        data['ShipFrom']['Address'], "Helvetica", 7, align="left")
+
+    val = data['ShipFrom']['City'] + " " + \
+        data['ShipFrom']['StateOrProvince'] + \
+        " " + data['ShipFrom']['CountryCode']
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['ShipFrom']['City']['x'], data_pos['ShipFrom']['City']['y'])
+
+    text_draw_on_canvas(pdf_canvas, x, y,  val, "Helvetica", 7, align="left")
+
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['ShipFrom']['PostalCode']['x'], data_pos['ShipFrom']['PostalCode']['y'])
+
+    text_draw_on_canvas(
+        pdf_canvas, x, y, data['ShipFrom']['PostalCode'], "Helvetica", 7, align="left")
+
+    # 2. Air Waybill No
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['AirWaybillNumber']['x'], data_pos['AirWaybillNumber']['y'])
+
+    text_draw_on_canvas(pdf_canvas, x, y,
+                        data['AirWaybillNumber'], "Helvetica", 10, align="left")
+    # 3. Shipper's Reference Number
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['ShipperReferenceNumber']['x'], data_pos['ShipperReferenceNumber']['y'])
+
+    text_draw_on_canvas(pdf_canvas, x, y,
+                        data['AirWaybillNumber'], "Helvetica", 10, align="left")
+    # 4. Pages
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['Pages']['x'], data_pos['Pages']['y'], data_pos['Pages']['w'])
+
+    text_draw_on_canvas(pdf_canvas, x, y,
+                        "1", "Helvetica", 10, align="left")
+    text_draw_on_canvas(pdf_canvas, x + _w, y,
+                        "1", "Helvetica", 10, align="left")
+
+    # 3. Consignee (ShipTo)
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['ShipTo']['Name']['x'], data_pos['ShipTo']['Name']['y'])
+
+    text_draw_on_canvas(pdf_canvas, x, y,
+                        data['ShipTo']['Name'], "Helvetica", 7, align="left")
+
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['ShipTo']['Address']['x'], data_pos['ShipTo']['Address']['y'])
+
+    text_draw_on_canvas(pdf_canvas, x, y,
+                        data['ShipTo']['Address'], "Helvetica", 7, align="left")
+
+    val = data['ShipTo']['City'] + " " + \
+        data['ShipTo']['StateOrProvince'] + \
+        " " + data['ShipTo']['CountryCode']
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['ShipTo']['City']['x'], data_pos['ShipTo']['City']['y'])
+
+    text_draw_on_canvas(pdf_canvas, x, y,  val, "Helvetica", 7, align="left")
+
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['ShipTo']['PostalCode']['x'], data_pos['ShipTo']['PostalCode']['y'])
+
+    text_draw_on_canvas(
+        pdf_canvas, x, y, data['ShipTo']['PostalCode'], "Helvetica", 7, align="left")
 
     pdf_canvas.showPage()
 

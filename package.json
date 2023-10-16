@@ -1,0 +1,26 @@
+{
+  "name": "code",
+  "version": "1.0.0",
+  "description": "build the several kinds of pdfs dynamically with reportlab and pandas",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "start": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/olegmicode/pdf-report-gen.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/olegmicode/pdf-report-gen/issues"
+  },
+  "homepage": "https://github.com/olegmicode/pdf-report-gen#readme",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

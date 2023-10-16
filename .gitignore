@@ -4,3 +4,5 @@ venv/
 .venv
 dist/*
 !vics-stand.pdf
+package-lock.json
+node_modules/
