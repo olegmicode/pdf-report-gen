@@ -112,7 +112,7 @@ def draw_on_page_one(pdf_canvas, data):
     text_draw_on_canvas(pdf_canvas, x + _w, y,
                         "1", "Helvetica", 10, align="left")
 
-    # 3. Consignee (ShipTo)
+    # 5. Consignee (ShipTo)
     x, y, _w, _h = translate_positon_to_pdf(
         data_pos['ShipTo']['Name']['x'], data_pos['ShipTo']['Name']['y'])
 
@@ -138,6 +138,13 @@ def draw_on_page_one(pdf_canvas, data):
 
     text_draw_on_canvas(
         pdf_canvas, x, y, data['ShipTo']['PostalCode'], "Helvetica", 7, align="left")
+    # company logo
+    x, y, w, h = translate_positon_to_pdf(
+        data_pos['Logo']['x'], data_pos['Logo']['y'], data_pos['Logo']['w'], data_pos['Logo']['h'])
+
+    image_path = "./src/iata_module/FedEx.jpg"
+    pdf_canvas.drawImage(
+        image_path, x, y, width=w, height=h)
 
     pdf_canvas.showPage()
 

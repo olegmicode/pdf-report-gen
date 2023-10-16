@@ -25,6 +25,12 @@ data_pos = {
         "y": 4.1,
         "w": 3
     },
+    "Logo": {
+        "x": 51,
+        "y": 20,
+        "w": 35,
+        "h": 10,
+    },
     "ShipFrom": {
         "CompanyName": {
             "x": 1,
