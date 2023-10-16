@@ -1,0 +1,48 @@
+{
+  "AirWaybillNumber": "794670265010",
+  "ShipperReferenceNumber": "",
+  "ShipFrom": {
+    "CompanyName": "ERP INTEGRATED SOLUTIONS",
+    "Address": "6000 Airport Plaza Dr. STE 550",
+    "City": "Harrison",
+    "StateOrProvince": "AR",
+    "PostalCode": "72601",
+    "CountryCode": "US"
+  },
+  "ShipTo": {
+    "Name": "XYZ, LLC",
+    "Address": "Los Angeles 550",
+    "City": "Los Angeles",
+    "StateOrProvince": "CA",
+    "PostalCode": "90630",
+    "CountryCode": "US"
+  },
+  "TransportDetails": {
+    "AirService": "",
+    "AirportOfDeparture": "",
+    "AirportOfDestination": ""
+  },
+  "ShipmentType": {
+    "RadioActive": false
+  },
+  "DangerousGoods": [
+    {
+      "ActualQuantity": "1.00",
+      "PackingType": "FIBREBOARD BOXES",
+      "UNNumber": "UN1824,",
+      "ProperShippingName": "CHLOROFORM",
+      "TechnicalName": "",
+      "HazmatClass": "6.1",
+      "PackingGroup": "III",
+      "ActualUOM": "L",
+      "PackingInstructions": "",
+      "ShipType": ""
+    }
+  ],
+  "AdditionalHandlingInformation": {
+    "EmergencyContact": "",
+    "EmergengyContactNo": "",
+    "ShipperName": "",
+    "ShipmentDate": ""
+  }
+}
