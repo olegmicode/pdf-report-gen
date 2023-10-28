@@ -71,84 +71,45 @@ data_pos = {
     },
     "TransportDetails": {
         "AirService": {
-            "x": 0,
-            "y": 0
+            "x": 0.5,
+            "y": 35.3,
+            "w": 12,
+            "h": 4.6,
         },
         "AirportOfDeparture": {
-            "x": 0,
-            "y": 0
+            "x": 25.5,
+            "y": 28
         },
         "AirportOfDestination": {
-            "x": 0,
-            "y": 0
+            "x": 23,
+            "y": 37.25
         }
     },
     "ShipmentType": {
         "RadioActive": {
-            "x": 0,
-            "y": 0
+            "active": {
+                "x": 60.75,
+                "y": 38.75,
+                "w": 18,
+                "h": 1.75,
+
+            },
+            "inactive": {
+                "x": 78.5,
+                "y": 38.7,
+                "w": 14,
+                "h": 1.75,
+            },
         }
     },
-    "DangerousGoods": [
-        {
-            "ActualQuantity": {
-                "x": 0,
-                "y": 0
-            },
-            "PackingType": {
-                "x": 0,
-                "y": 0
-            },
-            "UNNumber": {
-                "x": 0,
-                "y": 0
-            },
-            "ProperShippingName": {
-                "x": 0,
-                "y": 0
-            },
-            "TechnicalName": {
-                "x": 0,
-                "y": 0
-            },
-            "HazmatClass": {
-                "x": 0,
-                "y": 0
-            },
-            "PackingGroup": {
-                "x": 0,
-                "y": 0
-            },
-            "ActualUOM": {
-                "x": 0,
-                "y": 0
-            },
-            "PackingInstructions": {
-                "x": 0,
-                "y": 0
-            },
-            "ShipType": {
-                "x": 0,
-                "y": 0
-            }
-        }
-    ],
+    "DangerousGoods": {
+        "x": 1,
+        "y": 45
+    },
     "AdditionalHandlingInformation": {
         "EmergencyContact": {
-            "x": 0,
-            "y": 0
-        },
-        "EmergengyContactNo": {
-            "x": 0,
-            "y": 0
-        },
-        "ShipperName": {
-            "x": 0,
-            "y": 0
-        },
-        "ShipmentDate": {
-            "x": 0,
-            "y": 0
+            "x": 1,
+            "y": 81.5
         }
     }
 }

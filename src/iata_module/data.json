@@ -18,9 +18,9 @@
     "CountryCode": "US"
   },
   "TransportDetails": {
-    "AirService": "",
-    "AirportOfDeparture": "",
-    "AirportOfDestination": ""
+    "AirService": "2",
+    "AirportOfDeparture": "asdfasdf",
+    "AirportOfDestination": "asdfasdf"
   },
   "ShipmentType": {
     "RadioActive": false
@@ -40,9 +40,9 @@
     }
   ],
   "AdditionalHandlingInformation": {
-    "EmergencyContact": "",
-    "EmergengyContactNo": "",
+    "EmergencyContact": "F Person",
+    "EmergengyContactNo": "F123456",
     "ShipperName": "",
-    "ShipmentDate": ""
+    "ShipmentDate": "24 hr"
   }
 }

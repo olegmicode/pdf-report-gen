@@ -69,13 +69,13 @@ def draw_on_page_one(pdf_canvas, data):
         data_pos['ShipFrom']['CompanyName']['x'], data_pos['ShipFrom']['CompanyName']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['ShipFrom']['CompanyName'], "Helvetica", 7, align="left")
+                        data['ShipFrom']['CompanyName'], "Helvetica", 8, align="left")
 
     x, y, _w, _h = translate_positon_to_pdf(
         data_pos['ShipFrom']['Address']['x'], data_pos['ShipFrom']['Address']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['ShipFrom']['Address'], "Helvetica", 7, align="left")
+                        data['ShipFrom']['Address'], "Helvetica", 8, align="left")
 
     val = data['ShipFrom']['City'] + " " + \
         data['ShipFrom']['StateOrProvince'] + \
@@ -83,13 +83,13 @@ def draw_on_page_one(pdf_canvas, data):
     x, y, _w, _h = translate_positon_to_pdf(
         data_pos['ShipFrom']['City']['x'], data_pos['ShipFrom']['City']['y'])
 
-    text_draw_on_canvas(pdf_canvas, x, y,  val, "Helvetica", 7, align="left")
+    text_draw_on_canvas(pdf_canvas, x, y,  val, "Helvetica", 8, align="left")
 
     x, y, _w, _h = translate_positon_to_pdf(
         data_pos['ShipFrom']['PostalCode']['x'], data_pos['ShipFrom']['PostalCode']['y'])
 
     text_draw_on_canvas(
-        pdf_canvas, x, y, data['ShipFrom']['PostalCode'], "Helvetica", 7, align="left")
+        pdf_canvas, x, y, data['ShipFrom']['PostalCode'], "Helvetica", 8, align="left")
 
     # 2. Air Waybill No
     x, y, _w, _h = translate_positon_to_pdf(
@@ -117,13 +117,13 @@ def draw_on_page_one(pdf_canvas, data):
         data_pos['ShipTo']['Name']['x'], data_pos['ShipTo']['Name']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['ShipTo']['Name'], "Helvetica", 7, align="left")
+                        data['ShipTo']['Name'], "Helvetica", 8, align="left")
 
     x, y, _w, _h = translate_positon_to_pdf(
         data_pos['ShipTo']['Address']['x'], data_pos['ShipTo']['Address']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['ShipTo']['Address'], "Helvetica", 7, align="left")
+                        data['ShipTo']['Address'], "Helvetica", 8, align="left")
 
     val = data['ShipTo']['City'] + " " + \
         data['ShipTo']['StateOrProvince'] + \
@@ -131,13 +131,13 @@ def draw_on_page_one(pdf_canvas, data):
     x, y, _w, _h = translate_positon_to_pdf(
         data_pos['ShipTo']['City']['x'], data_pos['ShipTo']['City']['y'])
 
-    text_draw_on_canvas(pdf_canvas, x, y,  val, "Helvetica", 7, align="left")
+    text_draw_on_canvas(pdf_canvas, x, y,  val, "Helvetica", 8, align="left")
 
     x, y, _w, _h = translate_positon_to_pdf(
         data_pos['ShipTo']['PostalCode']['x'], data_pos['ShipTo']['PostalCode']['y'])
 
     text_draw_on_canvas(
-        pdf_canvas, x, y, data['ShipTo']['PostalCode'], "Helvetica", 7, align="left")
+        pdf_canvas, x, y, data['ShipTo']['PostalCode'], "Helvetica", 8, align="left")
     # company logo
     x, y, w, h = translate_positon_to_pdf(
         data_pos['Logo']['x'], data_pos['Logo']['y'], data_pos['Logo']['w'], data_pos['Logo']['h'])
@@ -146,6 +146,60 @@ def draw_on_page_one(pdf_canvas, data):
     pdf_canvas.drawImage(
         image_path, x, y, width=w, height=h)
 
+    # Transport Detail
+    # AirService
+    val = data['TransportDetails']['AirService']
+    x, y, w, h = translate_positon_to_pdf(
+        data_pos['TransportDetails']['AirService']['x'], data_pos['TransportDetails']['AirService']['y'], data_pos['TransportDetails']['AirService']['w'], data_pos['TransportDetails']['AirService']['h'])
+
+    if val == "1" or val == "3":
+        pdf_canvas.rect(x + w, y, w, h, fill=True)
+    elif val == "2":
+        pdf_canvas.rect(x, y, w, h, fill=True)
+    # AirportOfDeparture
+    val = data['TransportDetails']['AirportOfDeparture']
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['TransportDetails']['AirportOfDeparture']['x'], data_pos['TransportDetails']['AirportOfDeparture']['y'])
+    text_draw_on_canvas(pdf_canvas, x, y, val, "Helvetica", 8, align="left")
+    # AirportOfDestination
+    val = data['TransportDetails']['AirportOfDestination']
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['TransportDetails']['AirportOfDestination']['x'], data_pos['TransportDetails']['AirportOfDestination']['y'])
+    text_draw_on_canvas(pdf_canvas, x, y, val, "Helvetica", 8, align="left")
+
+    # ShipmentType
+    # RadioActive
+    val = data['ShipmentType']['RadioActive']
+    radio_active_pos = data_pos['ShipmentType']['RadioActive']
+
+    if val:
+        x, y, w, h = translate_positon_to_pdf(
+            radio_active_pos['active']['x'], radio_active_pos['active']['y'], radio_active_pos['active']['w'], radio_active_pos['active']['h'])
+        pdf_canvas.rect(x, y, w, h, fill=True)
+    else:
+        x, y, w, h = translate_positon_to_pdf(
+            radio_active_pos['inactive']['x'], radio_active_pos['inactive']['y'], radio_active_pos['inactive']['w'], radio_active_pos['inactive']['h'])
+        pdf_canvas.rect(x, y, w, h, fill=True)
+
+    # Dangerous goods
+    dangerous_goods = data['DangerousGoods']
+    for good in dangerous_goods:
+        x, y, _w, _h = translate_positon_to_pdf(
+            data_pos['DangerousGoods']['x'], data_pos['DangerousGoods']['y'])
+        line = f"{good['UNNumber']}, {good['PackingType']}, {good['HazmatClass']}, {good['ProperShippingName']}, {good['PackingGroup']} // {good['ActualQuantity']} {good['ActualUOM']} // {good['ActualUOM']}"
+        text_draw_on_canvas(pdf_canvas, x, y, line,
+                            "Helvetica", 8, align="left")
+    # AdditionalHandlingInformation
+    additional_handling_information = data['AdditionalHandlingInformation']
+    emergency_contact = additional_handling_information['EmergencyContact']
+    emergengy_contact_no = additional_handling_information['EmergengyContactNo']
+    shipper_name = additional_handling_information['ShipperName']
+    shipment_date = additional_handling_information['ShipmentDate']
+
+    val = f"{shipment_date} {shipper_name}    Emergency Contact Tel.No. {emergengy_contact_no}       Emergency Registrant: {emergency_contact}"
+    x, y, _w, _h = translate_positon_to_pdf(
+        data_pos['AdditionalHandlingInformation']['EmergencyContact']['x'], data_pos['AdditionalHandlingInformation']['EmergencyContact']['y'])
+    text_draw_on_canvas(pdf_canvas, x, y, val, "Helvetica", 9, align="left")
     pdf_canvas.showPage()
 
 
@@ -172,7 +226,7 @@ def draw_new_page(pdf_canvas, data):
 
     start_pos = first_page_count
 
-    print('[page_count ===>]', page_count)
+    # print('[page_count ===>]', page_count)
 
     __x, g_y, __h, g_h = translate_positon_to_pdf(
         data_pos['LineItems-2']['x'], data_pos['LineItems-2']['y'], h=data_pos['LineItems-2']['h'])

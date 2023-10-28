@@ -1,0 +1,28 @@
+{
+  "AccountNumber": "609713569",
+  "EmergencyContactNumber": "F123456",
+  "ShipperName": "ERP INTEGRATED SOLUTIONS",
+  "TrackingNumber": "794670265682",
+  "HazardousMaterials": [
+    {
+      "ActualQuantity": "1.00",
+      "PackingType": "FIBREBOARD BOXES",
+      "UNNumber": "UN1888",
+      "ProperShippingName": "CHLOROFORM",
+      "HazmatClass": "6.1",
+      "PackingGroup": "III",
+      "ActualUOM": "L"
+    },
+    {
+      "ActualQuantity": "1.00",
+      "PackingType": "FIBREBOARD BOXES",
+      "UNNumber": "UN1888",
+      "ProperShippingName": "CHLOROFORM",
+      "HazmatClass": "6.1",
+      "PackingGroup": "III",
+      "ActualUOM": "L"
+    }
+  ],
+  "SignatoryName": "John Doe",
+  "ShipmentDate": "10/07/2023"
+}
