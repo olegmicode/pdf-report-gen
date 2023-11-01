@@ -34,12 +34,12 @@ data_pos = {
         "dy": 2
     },
     "SignatoryName": {
-        "x": 1,
-        "y": 22
+        "x": 3,
+        "y": 21
     },
     "ShipmentDate": {
         "x": 35,
-        "y": 22
+        "y": 21
     }
 }
 

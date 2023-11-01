@@ -59,12 +59,12 @@ def draw_boundary_on_page(pdf_canvas, data):
 def draw_on_page_one(pdf_canvas, data):
     for r in range(0, 4):
         for c in range(0, 2):
-            draw_section(pdf_canvas, data, dx=c * 50, dy=r*25, idx=r)
+            draw_section(pdf_canvas, data, dx=c * 50, dy=r*25, r=r, c=c)
 
     pdf_canvas.showPage()
 
 
-def draw_section(pdf_canvas, data, dx, dy, idx):
+def draw_section(pdf_canvas, data, dx, dy, r, c):
     # AccountNumber
     x, y, _w, _h = translate_positon_to_pdf(
         dx + data_pos['AccountNumber']['x'], dy + data_pos['AccountNumber']['y'])
@@ -103,14 +103,14 @@ def draw_section(pdf_canvas, data, dx, dy, idx):
         text_draw_on_canvas(pdf_canvas, x, y, val,
                             "Helvetica", 7, align="left")
         ddy += data_pos['HazardousMaterials']['dy']
-    if idx == 0:
+    if r == 0:
         # SignatoryName
         x, y, _w, _h = translate_positon_to_pdf(
             dx + data_pos['SignatoryName']['x'], dy + data_pos['SignatoryName']['y'])
 
         text_draw_on_canvas(pdf_canvas, x, y,
                             data['SignatoryName'], "Helvetica", 7, align="left")
-    if idx < 2:
+    if r < 1 or (r < 2 and c < 1):
         # ShipmentDate
         x, y, _w, _h = translate_positon_to_pdf(
             dx + data_pos['ShipmentDate']['x'], dy + data_pos['ShipmentDate']['y'])
