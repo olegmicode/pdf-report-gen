@@ -2,7 +2,7 @@ from src.vict_stand_report.generate_pdf import vict_stand_generate_pdf_from_json
 from src.commericial_invoice_report.generate_pdf import commericial_invoice_generate_pdf_from_json
 from src.usmca_module.generate_pdf import usmca_generate_pdf_from_json
 from src.iata_module.generate_pdf import iata_generate_pdf_from_json
-from src.fedex_module.generate_pdf import fedex_generate_pdf_from_json
+from src.hazmat_module.generate_pdf import hazmat_generate_pdf_from_json
 
 # from test import generate_pdf_from_json
 
@@ -14,5 +14,5 @@ usmca_generate_pdf_from_json(
     "src/usmca_module/data.json", 'dist/usmca-report.pdf', "src/usmca_module/usmca.pdf")
 iata_generate_pdf_from_json(
     "src/iata_module/data.json", 'dist/iata-report.pdf', "src/iata_module/iata.pdf")
-fedex_generate_pdf_from_json(
-    "src/fedex_module/data.json", 'dist/fedex-report.pdf', "src/fedex_module/fedex.pdf")
+hazmat_generate_pdf_from_json(
+    "src/hazmat_module/data.json", 'dist/hazmat_8PartForm-report.pdf', "src/hazmat_module/hazmat.pdf")

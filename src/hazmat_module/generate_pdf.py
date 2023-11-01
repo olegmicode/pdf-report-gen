@@ -5,10 +5,10 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 from barcode.writer import ImageWriter
 from reportlab.lib.colors import white, black, lightslategray
-from src.fedex_module.service import data_pos, first_page_count, page_item_count, translate_positon_to_pdf, text_draw_on_canvas, draw_multiline_string
+from src.hazmat_module.service import data_pos, first_page_count, page_item_count, translate_positon_to_pdf, text_draw_on_canvas, draw_multiline_string
 
 
-def fedex_generate_pdf_from_json(json_file_path, output_pdf_path, model_pdf_path):
+def hazmat_generate_pdf_from_json(json_file_path, output_pdf_path, model_pdf_path):
     with open(json_file_path) as file:
         data = json.load(file)
 
@@ -57,14 +57,14 @@ def draw_boundary_on_page(pdf_canvas, data):
 
 
 def draw_on_page_one(pdf_canvas, data):
-    for x in range(0, 100, 50):
-        for y in range(0, 100, 25):
-            draw_section(pdf_canvas, data, dx=x, dy=y)
+    for r in range(0, 4):
+        for c in range(0, 2):
+            draw_section(pdf_canvas, data, dx=c * 50, dy=r*25, idx=r)
 
     pdf_canvas.showPage()
 
 
-def draw_section(pdf_canvas, data, dx, dy):
+def draw_section(pdf_canvas, data, dx, dy, idx):
     # AccountNumber
     x, y, _w, _h = translate_positon_to_pdf(
         dx + data_pos['AccountNumber']['x'], dy + data_pos['AccountNumber']['y'])
@@ -103,19 +103,20 @@ def draw_section(pdf_canvas, data, dx, dy):
         text_draw_on_canvas(pdf_canvas, x, y, val,
                             "Helvetica", 7, align="left")
         ddy += data_pos['HazardousMaterials']['dy']
+    if idx == 0:
+        # SignatoryName
+        x, y, _w, _h = translate_positon_to_pdf(
+            dx + data_pos['SignatoryName']['x'], dy + data_pos['SignatoryName']['y'])
 
-    # SignatoryName
-    x, y, _w, _h = translate_positon_to_pdf(
-        dx + data_pos['SignatoryName']['x'], dy + data_pos['SignatoryName']['y'])
+        text_draw_on_canvas(pdf_canvas, x, y,
+                            data['SignatoryName'], "Helvetica", 7, align="left")
+    if idx < 2:
+        # ShipmentDate
+        x, y, _w, _h = translate_positon_to_pdf(
+            dx + data_pos['ShipmentDate']['x'], dy + data_pos['ShipmentDate']['y'])
 
-    text_draw_on_canvas(pdf_canvas, x, y,
-                        data['SignatoryName'], "Helvetica", 7, align="left")
-    # ShipmentDate
-    x, y, _w, _h = translate_positon_to_pdf(
-        dx + data_pos['ShipmentDate']['x'], dy + data_pos['ShipmentDate']['y'])
-
-    text_draw_on_canvas(pdf_canvas, x, y,
-                        data['ShipmentDate'], "Helvetica", 7, align="left")
+        text_draw_on_canvas(pdf_canvas, x, y,
+                            data['ShipmentDate'], "Helvetica", 7, align="left")
 
 
 def get_total_page_count(data):
