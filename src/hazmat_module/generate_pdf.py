@@ -59,7 +59,8 @@ def draw_boundary_on_page(pdf_canvas, data):
 def draw_on_page_one(pdf_canvas, data):
     for r in range(0, 4):
         for c in range(0, 2):
-            draw_section(pdf_canvas, data, dx=c * 50, dy=r*25, r=r, c=c)
+            draw_section(pdf_canvas, data, dx=data_pos['dx'][c],
+                         dy=data_pos['dy'][r], r=r, c=c)
 
     pdf_canvas.showPage()
 
@@ -70,25 +71,25 @@ def draw_section(pdf_canvas, data, dx, dy, r, c):
         dx + data_pos['AccountNumber']['x'], dy + data_pos['AccountNumber']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['AccountNumber'], "Helvetica", 7, align="left")
+                        data['AccountNumber'], "Helvetica", 6, align="left")
     # EmergencyContactNumber
     x, y, _w, _h = translate_positon_to_pdf(
         dx + data_pos['EmergencyContactNumber']['x'], dy + data_pos['EmergencyContactNumber']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['EmergencyContactNumber'], "Helvetica", 7, align="left")
+                        data['EmergencyContactNumber'], "Helvetica", 6, align="left")
     # EmergencyContactNumber
     x, y, _w, _h = translate_positon_to_pdf(
         dx + data_pos['ShipperName']['x'], dy + data_pos['ShipperName']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['ShipperName'], "Helvetica", 7, align="left")
+                        data['ShipperName'], "Helvetica", 6, align="left")
     # TrackingNumber
     x, y, _w, _h = translate_positon_to_pdf(
         dx + data_pos['TrackingNumber']['x'], dy + data_pos['TrackingNumber']['y'])
 
     text_draw_on_canvas(pdf_canvas, x, y,
-                        data['TrackingNumber'], "Helvetica", 7, align="left")
+                        data['TrackingNumber'], "Helvetica", 6, align="left")
 
     # HazardousMaterials
 
@@ -101,7 +102,7 @@ def draw_section(pdf_canvas, data, dx, dy, r, c):
             hazardous['PackingGroup'] + ', ' + hazardous['PackingType'] + \
             ' x ' + hazardous['ActualQuantity'] + hazardous['ActualUOM']
         text_draw_on_canvas(pdf_canvas, x, y, val,
-                            "Helvetica", 7, align="left")
+                            "Helvetica", 6, align="left")
         ddy += data_pos['HazardousMaterials']['dy']
     if r == 0:
         # SignatoryName
@@ -109,14 +110,14 @@ def draw_section(pdf_canvas, data, dx, dy, r, c):
             dx + data_pos['SignatoryName']['x'], dy + data_pos['SignatoryName']['y'])
 
         text_draw_on_canvas(pdf_canvas, x, y,
-                            data['SignatoryName'], "Helvetica", 7, align="left")
+                            data['SignatoryName'], "Helvetica", 6, align="left")
     if r < 1 or (r < 2 and c < 1):
         # ShipmentDate
         x, y, _w, _h = translate_positon_to_pdf(
             dx + data_pos['ShipmentDate']['x'], dy + data_pos['ShipmentDate']['y'])
 
         text_draw_on_canvas(pdf_canvas, x, y,
-                            data['ShipmentDate'], "Helvetica", 7, align="left")
+                            data['ShipmentDate'], "Helvetica", 6, align="left")
 
 
 def get_total_page_count(data):

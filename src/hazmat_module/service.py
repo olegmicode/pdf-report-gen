@@ -12,12 +12,14 @@ page_params = {
 }
 
 data_pos = {
+    "dx": [0, 48.5],
+    "dy": [0, 22.5, 45, 67.5, 90],
     "AccountNumber": {
-        "x": 1,
-        "y": 1.5
+        "x": 1.8,
+        "y": 1.35
     },
     "EmergencyContactNumber": {
-        "x": 16,
+        "x": 16.5,
         "y": 1.5
     },
     "ShipperName": {
@@ -25,21 +27,21 @@ data_pos = {
         "y": 1.5
     },
     "TrackingNumber": {
-        "x": 1,
+        "x": 1.8,
         "y": 4
     },
     "HazardousMaterials": {
-        "x": 1,
-        "y": 6.5,
+        "x": 1.8,
+        "y": 7.3,
         "dy": 2
     },
     "SignatoryName": {
-        "x": 3,
-        "y": 21
+        "x": 4,
+        "y": 18.2
     },
     "ShipmentDate": {
-        "x": 35,
-        "y": 21
+        "x": 27,
+        "y": 18.2
     }
 }
 
